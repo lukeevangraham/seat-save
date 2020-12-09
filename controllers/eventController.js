@@ -13,4 +13,12 @@ module.exports = {
       alert(error);
     }
   },
+  get: async (req, res) => {
+    try {
+      const dbEvent = await db.Event.find({});
+      res.json(dbEvent);
+    } catch (error) {
+      alert(error);
+    }
+  },
 };

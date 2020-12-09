@@ -1,12 +1,11 @@
 import React from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 
 import Layout from "./hoc/Layout/Layout";
 import EventList from "./containers/EventList/EventList";
 import EventCreate from "./containers/EventCreate/EventCreate";
-import history from "./history";
 
 const App = (props) => {
   let routes = (
@@ -19,13 +18,11 @@ const App = (props) => {
   return (
     <div>
       <CssBaseline />
-      <Router history={history}>
-        <Container maxWidth="md">
+      <Container maxWidth="md">
           <Layout>{routes}</Layout>
-        </Container>
-      </Router>
+      </Container>
     </div>
   );
 };
 
-export default App;
+export default withRouter(App);
