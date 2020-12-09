@@ -3,21 +3,44 @@ import { Field, reduxForm } from "redux-form";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Input } from "@material-ui/core";
-// import DatePicker from "./DatePicker/DatePicker";
-import { DatePicker } from "redux-form-material-ui";
 
-let EventForm = (props) => {
-  const renderTextField = (field) => (
-    <TextField
-      label={field.label}
-      // floatingLabelText={field.input.label}
-      // errorText={field.touched && field.error}
-      {...field.input}
-    />
-  );
 
+const renderTextField = ({
+  label,
+  input,
+  meta: { touched, invalid, error },
+  ...custom
+}) => (
+  <TextField
+    label={label}
+    placeholder={label}
+    error={touched && invalid}
+    helperText={touched && error}
+    {...input}
+    {...custom}
+  />
+);
+
+const renderDateAndTimeField = ({
+  label,
+  input,
+  meta: { touched, invalid, error },
+  ...custom
+}) => (
+  <TextField
+    id="datetime-local"
+    label={label}
+    type="datetime-local"
+    InputLabelProps={{ shrink: true }}
+    {...input}
+    {...custom}
+  />
+);
+
+const EventForm = (props) => {
+  const { handleSubmit, pristine, reset, submitting, classes } = props;
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <Field
           name="eventName"
@@ -27,18 +50,24 @@ let EventForm = (props) => {
       </div>
       <br />
       <div>
-        {/* <Field name="date" component={DatePicker} type="date" /> */}
         <Field
           name="date"
-          component={DatePicker}
-          format={null}
-          hintText="What day is the event?"
+          component={renderDateAndTimeField}
+          label="Event Date & Time"
         />
       </div>
+      <br />
       <div>
-        <label htmlFor="openSpots">Open Spots</label>
-        <Field name="openSpots" component="input" type="number" />
+        <Field
+          name="openSpots"
+          component={renderTextField}
+          type="number"
+          label="Open Spots"
+          inputProps={{ "min": 0 }}
+        />
       </div>
+      <br />
+      <br />
       <Button type="submit" variant="contained" color="secondary">
         Submit
       </Button>

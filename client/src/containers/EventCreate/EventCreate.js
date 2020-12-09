@@ -6,9 +6,10 @@ import EventForm from "./EventForm/EventForm";
 const EventCreate = (props) => {
   const onSubmit = (formValues) => {
     console.log("VALUES: ", formValues);
+    props.createEvent(formValues);
   };
 
-  return <EventForm onSubmit={onSubmit} />
+  return <EventForm onSubmit={onSubmit} />;
 };
 
 export default connect(null, { createEvent })(EventCreate);
