@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+import Link from "@material-ui/core/Link"
 import { connect } from "react-redux";
 import { fetchUpcomingEvents } from "../../store/actions/index";
 
@@ -24,7 +25,7 @@ const EventList = (props) => {
       {eventList}
       <br />
       <br />
-      <Link to="/admin">Admin</Link>
+      <Link component={RouterLink} to="/admin">Admin</Link>
     </div>
   );
 };
