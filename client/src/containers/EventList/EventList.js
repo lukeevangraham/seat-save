@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUpcomingEvents } from "../../store/actions/index";
 
+import EventTable from "../../components/EventTable/EventTable";
+
 const EventList = (props) => {
   useEffect(() => {
     props.fetchUpcomingEvents();
@@ -11,19 +13,14 @@ const EventList = (props) => {
   let eventList = <div>Loading...</div>;
 
   if (props.events.events.length) {
-    eventList = props.events.events.map((event) => {
-      return (
-        <div key={event._id}>
-          <div>{event.eventName}</div>
-        </div>
-      );
-    });
+    eventList = <EventTable events={props.events.events} />
   }
 
   return (
     <div>
       {console.log("event list loading!")}
       <h2>Event List</h2>
+      {/* <EventTable events={props.events.events} /> */}
       {eventList}
       <br />
       <br />
