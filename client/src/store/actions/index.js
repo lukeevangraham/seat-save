@@ -17,3 +17,9 @@ export const fetchUpcomingEvents = () => async (dispatch) => {
 
   dispatch({ type: actionTypes.FETCH_EVENTS, payload: response.data });
 };
+
+export const fetchEvent = (id) => async (dispatch) => {
+  const response = await seats.get(`/event/${id}`);
+
+  dispatch({ type: actionTypes.FETCH_EVENT, payload: response.data });
+};

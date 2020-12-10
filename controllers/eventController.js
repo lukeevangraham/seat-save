@@ -21,4 +21,13 @@ module.exports = {
       alert(error);
     }
   },
+  getById: async (req, res) => {
+    try {
+      // console.log(req.params)
+      const dbEvent = await db.Event.findById(req.params.id);
+      res.json(dbEvent);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

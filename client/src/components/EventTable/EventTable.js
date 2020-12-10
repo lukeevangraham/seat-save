@@ -1,4 +1,6 @@
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
+import Link from "@material-ui/core/Link";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -22,10 +24,24 @@ const eventTable = (props) => (
       <TableBody>
         {props.events.map((event) => (
           <TableRow key={event.eventName}>
-            <TableCell component="th" scope="row">{event.eventName}</TableCell>
-            <TableCell align="right">{new Date(event.date).toLocaleDateString("us-en", {weekday: 'long'})}</TableCell>
-            <TableCell align="right">{new Date(event.date).toLocaleDateString()}</TableCell>
-            <TableCell align="right">{new Date(event.date).toLocaleTimeString([], {timeStyle: "short"})}</TableCell>
+            <TableCell component="th" scope="row">
+              <Link component={RouterLink} to={`/reserve/${event._id}`}>
+              {event.eventName}
+              </Link>
+            </TableCell>
+            <TableCell align="right">
+              {new Date(event.date).toLocaleDateString("us-en", {
+                weekday: "short",
+              })}
+            </TableCell>
+            <TableCell align="right">
+              {new Date(event.date).toLocaleDateString()}
+            </TableCell>
+            <TableCell align="right">
+              {new Date(event.date).toLocaleTimeString([], {
+                timeStyle: "short",
+              })}
+            </TableCell>
             <TableCell align="right">{event.openSpots}</TableCell>
           </TableRow>
         ))}

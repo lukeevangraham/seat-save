@@ -19,7 +19,6 @@ const EventList = (props) => {
 
   return (
     <div>
-      {console.log("event list loading!")}
       <h2>Event List</h2>
       {/* <EventTable events={props.events.events} /> */}
       {eventList}
