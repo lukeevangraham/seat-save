@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createEvent, startCreateGroup } from "../../store/actions";
 import EventForm from "./EventForm/EventForm";
@@ -20,6 +20,10 @@ const EventCreate = (props) => {
       {createdRedirect}
       <h2>Create An Event:</h2>
       <EventForm onSubmit={onSubmit} />
+      <br />
+      <br />
+      <br />
+      <Link to="/reservations">View Reservations</Link>
     </React.Fragment>
   );
 };

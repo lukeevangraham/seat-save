@@ -17,7 +17,7 @@ const groupSchema = new Schema({
     type: Number,
     required: true,
   },
-  Note: {
+  note: {
     type: String,
   },
 });

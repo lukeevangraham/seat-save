@@ -24,10 +24,16 @@ const eventTable = (props) => (
       <TableBody>
         {props.events.map((event) => (
           <TableRow key={event.eventName}>
-            {console.log("LOOK HERE[map]: ", props)}
             <TableCell component="th" scope="row">
-              <Link component={RouterLink} to={ props.admin ? `/reservations/${event._id}` :  `/reserve/${event._id}`}>
-              {event.eventName}
+              <Link
+                component={RouterLink}
+                to={
+                  props.admin
+                    ? `/reservations/${event._id}`
+                    : `/reserve/${event._id}`
+                }
+              >
+                {event.eventName}
               </Link>
             </TableCell>
             <TableCell align="right">
@@ -48,7 +54,6 @@ const eventTable = (props) => (
         ))}
       </TableBody>
     </Table>
-    {console.log(props.events)}
   </TableContainer>
 );
 

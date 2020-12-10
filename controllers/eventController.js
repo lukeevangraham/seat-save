@@ -32,10 +32,10 @@ module.exports = {
   },
   getAdminById: async (req, res) => {
     try {
-      const dbEvent = await (await db.Event.findById(req.params.id)).populated("groups");
+      const dbEvent = await db.Event.find({ _id: req.params.id }).populate("groups");
       res.json(dbEvent);
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   }
 };
