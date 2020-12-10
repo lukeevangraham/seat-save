@@ -24,7 +24,7 @@ module.exports = {
   getById: async (req, res) => {
     try {
       // console.log(req.params)
-      const dbEvent = await db.Event.findById(req.params.id);
+      const dbEvent = await db.Event.findById(req.params.id).select('eventName date openSpots');
       res.json(dbEvent);
     } catch (error) {
       console.log(error);

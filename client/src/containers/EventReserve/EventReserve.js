@@ -4,24 +4,26 @@ import { connect } from "react-redux";
 import { fetchEvent, createGroup, startCreateGroup } from "../../store/actions";
 
 import ReserveForm from "./ReserveForm/ReserveForm";
+import GroupConfirm from "../../components/GroupConfirm/GroupConfirm";
 
 const EventReserve = (props) => {
   useEffect(() => {
     props.fetchEvent(props.match.params.id);
-    return () => props.startCreateGroup()
+    return () => props.startCreateGroup();
   }, [props.fetchEvent]);
 
   const onSubmit = (formValues) => {
     props.createGroup(props.match.params.id, formValues);
   };
 
-  const createdRedirect = props.created ? <Redirect to="/" /> : null;
+  // const createdRedirect = props.created ? <GroupConfirm /> : null;
 
   let renderForm = <div>Loading ...</div>;
 
   if (props.event)
     renderForm = (
       <div>
+        <h2>Make Reservation</h2>
         <h4>
           {props.event.eventName} -{" "}
           {new Date(props.event.date).toLocaleDateString("us-en", {
@@ -40,9 +42,8 @@ const EventReserve = (props) => {
 
   return (
     <div>
-      {createdRedirect}
-      <h2>Make Reservation</h2>
-      {renderForm}
+      {/* {createdRedirect} */}
+      {(!props.created) ? renderForm : <GroupConfirm group={props.group.dbGroup} event={props.event} /> }
     </div>
   );
 };
@@ -50,10 +51,13 @@ const EventReserve = (props) => {
 const mapStateToProps = (state) => {
   return {
     event: state.event.events,
-    created: state.group.created
+    created: state.group.created,
+    group: state.group.group
   };
 };
 
-export default connect(mapStateToProps, { fetchEvent, createGroup, startCreateGroup })(
-  EventReserve
-);
+export default connect(mapStateToProps, {
+  fetchEvent,
+  createGroup,
+  startCreateGroup,
+})(EventReserve);

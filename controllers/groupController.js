@@ -14,7 +14,8 @@ module.exports = {
         }
       );
       res.json({
-        message: `Group reservation added ${dbEvent}`,
+        message: `Group reservation added!`,
+        dbGroup
       });
     } catch (error) {
       alert(error);
