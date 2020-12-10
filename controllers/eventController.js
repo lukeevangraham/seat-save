@@ -15,7 +15,7 @@ module.exports = {
   },
   get: async (req, res) => {
     try {
-      const dbEvent = await db.Event.find({});
+      const dbEvent = await db.Event.find({}, 'eventName date openSpots');
       res.json(dbEvent);
     } catch (error) {
       alert(error);

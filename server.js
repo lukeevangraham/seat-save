@@ -24,7 +24,8 @@ app.use(function (req, res, next) {
 });
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/seatsave", {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useFindAndModify: false
 })
 
 // Define API routes here

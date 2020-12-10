@@ -1,18 +1,24 @@
 import React, { useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchEvent } from "../../store/actions";
+import { fetchEvent, createGroup, startCreateGroup } from "../../store/actions";
 
 import ReserveForm from "./ReserveForm/ReserveForm";
 
 const EventReserve = (props) => {
-  const onSubmit = (formValues) => {
-    console.log(formValues)
-  }
   useEffect(() => {
     props.fetchEvent(props.match.params.id);
+    return () => props.startCreateGroup()
   }, [props.fetchEvent]);
 
+  const onSubmit = (formValues) => {
+    props.createGroup(props.match.params.id, formValues);
+  };
+
+  const createdRedirect = props.created ? <Redirect to="/" /> : null;
+
   let renderForm = <div>Loading ...</div>;
+
   if (props.event)
     renderForm = (
       <div>
@@ -34,14 +40,20 @@ const EventReserve = (props) => {
 
   return (
     <div>
-      <h3>Make Reservation</h3>
+      {createdRedirect}
+      <h2>Make Reservation</h2>
       {renderForm}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  return { event: state.event.events };
+  return {
+    event: state.event.events,
+    created: state.group.created
+  };
 };
 
-export default connect(mapStateToProps, { fetchEvent })(EventReserve);
+export default connect(mapStateToProps, { fetchEvent, createGroup, startCreateGroup })(
+  EventReserve
+);

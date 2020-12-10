@@ -1,5 +1,4 @@
 import seats from "../../apis/seats";
-import history from "../../history";
 
 import * as actionTypes from "./actionTypes";
 
@@ -22,4 +21,19 @@ export const fetchEvent = (id) => async (dispatch) => {
   const response = await seats.get(`/event/${id}`);
 
   dispatch({ type: actionTypes.FETCH_EVENT, payload: response.data });
+};
+
+export const createGroup = (id, formValues) => async (dispatch) => {
+  const response = await seats.post(`/group/${id}`, formValues);
+
+  dispatch({
+    type: actionTypes.CREATE_GROUP,
+    payload: response.data,
+  });
+};
+
+export const startCreateGroup = () => {
+  return {
+    type: actionTypes.CREATE_GROUP_START,
+  };
 };

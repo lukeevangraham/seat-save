@@ -1,19 +1,19 @@
-import React from "react";
-import { Redirect } from "react-router-dom"
+import React, { useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { createEvent } from "../../store/actions";
+import { createEvent, startCreateGroup } from "../../store/actions";
 import EventForm from "./EventForm/EventForm";
 
 const EventCreate = (props) => {
+  useEffect(() => {
+    props.startCreateGroup()
+  }, [props.startCreateGroup])
+
   const onSubmit = (formValues) => {
     props.createEvent(formValues);
   };
 
-  console.log("CREATED: ", props.created);
-
-  const createdRedirect = props.created ? (
-    <Redirect to="/" />
-  ) : null;
+  const createdRedirect = props.created ? <Redirect to="/" /> : null;
 
   return (
     <React.Fragment>
@@ -30,4 +30,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { createEvent })(EventCreate);
+export default connect(mapStateToProps, { createEvent, startCreateGroup })(EventCreate);

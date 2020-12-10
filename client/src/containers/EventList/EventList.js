@@ -9,7 +9,7 @@ import EventTable from "../../components/EventTable/EventTable";
 const EventList = (props) => {
   useEffect(() => {
     props.fetchUpcomingEvents();
-  }, []);
+  }, [props.fetchUpcomingEvents]);
 
   let eventList = <div>Loading...</div>;
 
@@ -20,7 +20,6 @@ const EventList = (props) => {
   return (
     <div>
       <h2>Event List</h2>
-      {/* <EventTable events={props.events.events} /> */}
       {eventList}
       <br />
       <br />

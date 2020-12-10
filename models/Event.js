@@ -15,6 +15,12 @@ const eventSchema = new Schema({
     type: Number,
     required: true,
   },
+  groups: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Group",
+    },
+  ],
 });
 
 const Event = mongoose.model("Event", eventSchema);
