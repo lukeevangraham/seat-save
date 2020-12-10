@@ -23,6 +23,12 @@ export const fetchEvent = (id) => async (dispatch) => {
   dispatch({ type: actionTypes.FETCH_EVENT, payload: response.data });
 };
 
+export const fetchPopulatedEvent = (id) => async (dispatch) => {
+  const response = await seats.get(`event/admin/${id}`)
+
+  dispatch({ type: actionTypes.FETCH_EVENTS, payload: response.data })
+}
+
 export const createGroup = (id, formValues) => async (dispatch) => {
   const response = await seats.post(`/group/${id}`, formValues);
 

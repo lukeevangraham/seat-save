@@ -24,8 +24,9 @@ const eventTable = (props) => (
       <TableBody>
         {props.events.map((event) => (
           <TableRow key={event.eventName}>
+            {console.log("LOOK HERE[map]: ", props)}
             <TableCell component="th" scope="row">
-              <Link component={RouterLink} to={`/reserve/${event._id}`}>
+              <Link component={RouterLink} to={ props.admin ? `/reservations/${event._id}` :  `/reserve/${event._id}`}>
               {event.eventName}
               </Link>
             </TableCell>

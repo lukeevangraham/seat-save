@@ -30,4 +30,12 @@ module.exports = {
       console.log(error);
     }
   },
+  getAdminById: async (req, res) => {
+    try {
+      const dbEvent = await (await db.Event.findById(req.params.id)).populated("groups");
+      res.json(dbEvent);
+    } catch (error) {
+      alert(error);
+    }
+  }
 };
