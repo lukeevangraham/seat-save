@@ -2,6 +2,7 @@ const router = require("express").Router();
 const churchRoutes = require("./church");
 const eventRoutes = require("./event");
 const groupRoutes = require("./group");
+const path = require("path");
 
 router.use("/church", churchRoutes)
 

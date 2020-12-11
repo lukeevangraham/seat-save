@@ -1,9 +1,8 @@
 const express = require("express");
-const logger = require("morgan")
-const path = require("path");
-const mongoose = require("mongoose")
+const logger = require("morgan");
+const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3005;
-require("dotenv").config()
+require("dotenv").config();
 
 const app = express();
 
@@ -14,20 +13,27 @@ app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+  // app.use("*", express.static("client/build"));
 }
 
 // Enable CORS
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,OPTIONS,POST,PUT,DELETE"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
   next();
 });
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/seatsave", {
   useNewUrlParser: true,
-  useFindAndModify: false
-})
+  useFindAndModify: false,
+});
 
 // Define API routes here
 const routes = require("./routes");
