@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, formValueSelector, reduxForm } from "redux-form";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
@@ -31,7 +31,12 @@ let ReserveForm = (props) => {
         />
       </div>
       <div>
-        <Field name="email" component={renderTextField} type="email" label="Email" />
+        <Field
+          name="email"
+          component={renderTextField}
+          type="email"
+          label="Email"
+        />
       </div>
       <div>
         <Field
@@ -50,8 +55,20 @@ let ReserveForm = (props) => {
   );
 };
 
+const validate = (formValues) => {
+  const errors = {};
+  if (!formValues.groupName) {
+    errors.groupName = "You must enter a group name";
+  }
+  if (formValues.email &&  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formValues.email)) {
+    errors.email = 'Invalid email address'
+  }
+  return errors;
+};
+
 ReserveForm = reduxForm({
   form: "reserve",
+  validate,
 })(ReserveForm);
 
 export default ReserveForm;
