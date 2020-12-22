@@ -7,3 +7,6 @@ export const EDIT_EVENT = "EDIT_EVENT";
 
 export const CREATE_GROUP = "CREATE_GROUP";
 export const CREATE_GROUP_START = "CREATE_GROUP_START";
+
+export const SIGN_IN = "SIGN_IN";
+export const SIGN_OUT = "SIGN_OUT";

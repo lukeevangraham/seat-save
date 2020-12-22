@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { fetchUpcomingEvents } from "../../store/actions/index";
 
 import EventTable from "../../components/EventTable/EventTable";
+import GoogleAuth from "../GoogleAuth/GoogleAuth"
 
 const EventList = (props) => {
   useEffect(() => {
@@ -24,6 +25,7 @@ const EventList = (props) => {
       <br />
       <br />
       <Link component={RouterLink} to="/admin">Admin</Link>
+      <GoogleAuth />
     </div>
   );
 };
