@@ -45,6 +45,7 @@ let ReserveForm = (props) => {
           type="number"
           label="How Many People in Your Group?"
           inputProps={{ min: 1 }}
+          style={{ width: "300px" }}
         />
       </div>
       <br />
@@ -57,9 +58,16 @@ let ReserveForm = (props) => {
 
 const validate = (formValues) => {
   const errors = {};
-  if (!formValues.groupName) {
-    errors.groupName = "You must enter a group name";
-  }
+  const requiredFields = [
+    'groupName',
+    'email',
+    'groupSize'
+  ]
+  requiredFields.forEach(field => {
+    if (!formValues[field]) {
+      errors[field] = 'Required'
+    }
+  })
   if (formValues.email &&  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formValues.email)) {
     errors.email = 'Invalid email address'
   }
