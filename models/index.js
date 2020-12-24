@@ -1,5 +1,6 @@
 module.exports = {
     Church: require("./Church"),
     Event: require("./Event"),
-    Group: require("./Group")
+    Group: require("./Group"),
+    User: require("./User")
 }

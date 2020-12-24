@@ -12,7 +12,7 @@ const churchSchema = new Schema({
       required: true
   },
   adminEmail: {
-      type: String,
+      type: Array,
       required: true
   },
   adminPhone: {

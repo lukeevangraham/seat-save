@@ -44,12 +44,17 @@ export const startCreateGroup = () => {
   };
 };
 
-export const signIn = (userId) => {
-  return {
+export const signIn = (profile) => async (dispatch) => {
+  console.log("PROFILE: ", profile)
+  const response = await seats.post("/user", profile);
+  console.log("RES: ", response.data)
+
+  dispatch({
     type: actionTypes.SIGN_IN,
-    payload: userId,
-  };
+    payload: response.data,
+  });
 };
+
 export const signOut = () => {
   return {
     type: actionTypes.SIGN_OUT,
