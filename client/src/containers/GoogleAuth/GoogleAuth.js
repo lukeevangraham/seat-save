@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Redirect, Link as RouterLink } from "react-router-dom";
 import { connect } from "react-redux";
 import Link from "@material-ui/core/Link";
 import { signIn, signOut } from "../../store/actions";
@@ -24,8 +24,7 @@ class GoogleAuth extends React.Component {
 
   onAuthChange = (isSignedIn) => {
     if (isSignedIn) {
-      const profile = this.auth.currentUser.get().getBasicProfile()
-      console.log("AUTH: ", profile);
+      const profile = this.auth.currentUser.get().getBasicProfile();
       this.props.signIn(profile);
     } else {
       this.props.signOut();
@@ -46,25 +45,41 @@ class GoogleAuth extends React.Component {
     } else if (this.props.isSignedIn) {
       return (
         <div onClick={this.onSignOutClick}>
-          <Link to={"#"} component={RouterLink}>Sign Out</Link>
+          <Link to={"#"} component={RouterLink}>
+            Sign Out
+          </Link>
         </div>
       );
     } else {
       return (
         <div onClick={this.onSignInClick}>
-          <Link to={"#"} component={RouterLink}>Admin</Link>
+          <Link to={"#"} component={RouterLink}>
+            Admin
+          </Link>
         </div>
       );
     }
   }
 
+  adminRedirect = this.props.isAdmin ? <Redirect to="/admin" /> : null;
+
   render() {
-    return <div>{this.renderAuthButton()}</div>;
+    return (
+      <div>
+        {this.adminRedirect}
+        {this.renderAuthButton()}
+
+        {console.log("PROPS: ", this.props)}
+      </div>
+    );
   }
 }
 
 const mapStateToProps = (state) => {
-  return { isSignedIn: state.auth.isSignedIn };
+  return {
+    isSignedIn: state.auth.isSignedIn,
+    isAdmin: state.auth.userId.adminOf.length > 0,
+  };
 };
 
 export default connect(mapStateToProps, { signIn, signOut })(GoogleAuth);

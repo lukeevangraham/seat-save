@@ -31,7 +31,13 @@ const userSchema = new Schema({
   createdDate: {
     type: Date,
     default: Date.now
-  }
+  },
+  adminOf : [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Church"
+    }
+  ]
 });
 
 const User = mongoose.model("User", userSchema);

@@ -25,7 +25,7 @@ const EventList = (props) => {
       <br />
       <br />
       <Link component={RouterLink} to="/admin">Admin</Link>
-      <GoogleAuth />
+      {/* <GoogleAuth /> */}
     </div>
   );
 };

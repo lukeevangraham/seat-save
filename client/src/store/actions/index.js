@@ -45,7 +45,6 @@ export const startCreateGroup = () => {
 };
 
 export const signIn = (profile) => async (dispatch) => {
-  console.log("PROFILE: ", profile)
   const response = await seats.post("/user", profile);
   console.log("RES: ", response.data)
 
