@@ -18,7 +18,7 @@ module.exports = {
     db.User.findOne({ email: req.body.cu }).then((dbUser) => {
 
       // CREATE USER IF NOT LOCATED
-      if (dbUser.length <= 0) {
+      if (!dbUser) {
         const { BT, Ad, fV, iT, SJ, cu } = req.body;
         const renamedBody = {
           iD: BT,
@@ -30,10 +30,22 @@ module.exports = {
         };
 
         db.User.create(renamedBody).then((createdDbUser) => {
-          res.json(createdDbUser);
+          res.json({
+            errorMessage: "You do not have an admin account with SeatSave"
+          });
         });
       } else {
-        res.json(dbUser);
+
+        // Is user approved for church?
+        db.Church.findOne({ adminEmail: dbUser.email }).then((dbChurch) => {
+
+          console.log("CHURCH: ", dbChurch)
+          dbChurch ? res.json(dbUser) : res.json({errorMessage: "You do not have an admin account with SeatSave"})
+          
+        })
+        
+        
+
       }
     });
   },

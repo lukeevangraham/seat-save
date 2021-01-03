@@ -29,6 +29,12 @@ export const fetchPopulatedEvent = (id) => async (dispatch) => {
   dispatch({ type: actionTypes.FETCH_EVENTS, payload: response.data });
 };
 
+export const deleteEvent = (id) => async (dispatch) => {
+  const response = await seats.delete(`event/${id}`);
+
+  dispatch({ type: actionTypes.DELETE_EVENT, payload: id });
+};
+
 export const createGroup = (id, formValues) => async (dispatch) => {
   const response = await seats.post(`/group/${id}`, formValues);
 
@@ -46,12 +52,20 @@ export const startCreateGroup = () => {
 
 export const signIn = (profile) => async (dispatch) => {
   const response = await seats.post("/user", profile);
-  console.log("RES: ", response.data)
 
-  dispatch({
-    type: actionTypes.SIGN_IN,
-    payload: response.data,
-  });
+  if (response.data.email) {
+    dispatch({
+      type: actionTypes.SIGN_IN,
+      payload: response.data,
+    });
+  } else {
+    console.log("RES REAL: ", response.data.errorMessage);
+    alert(response.data.errorMessage);
+    dispatch({
+      type: actionTypes.SIGN_OUT,
+      payload: response.data,
+    });
+  }
 };
 
 export const signOut = () => {

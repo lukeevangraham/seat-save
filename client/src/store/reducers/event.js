@@ -15,6 +15,9 @@ const eventReducer = (state = initialState, action) => {
       return { ...state, events: action.payload, created: true };
     case actionTypes.FETCH_POPULATED_EVENT:
       return { ...state, events: action.payload };
+    case actionTypes.DELETE_EVENT:
+      console.log("REDUCER RES: ", action.payload);
+      return { ...state, events: state.events.filter(event => event._id !== action.payload ) };
     default:
       return state;
   }

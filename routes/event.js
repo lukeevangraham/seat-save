@@ -8,5 +8,6 @@ router.route("/admin/:id").get(eventController.getAdminById);
 
 // Matches with "./event/:id"
 router.route("/:id").get(eventController.getById);
+router.route("/:id").delete(eventController.deleteById);
 
 module.exports = router;

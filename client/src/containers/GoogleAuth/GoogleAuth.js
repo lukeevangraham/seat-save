@@ -44,11 +44,27 @@ class GoogleAuth extends React.Component {
       return null;
     } else if (this.props.isSignedIn) {
       return (
-        <div onClick={this.onSignOutClick}>
-          <Link to={"#"} component={RouterLink}>
-            Sign Out
-          </Link>
-        </div>
+        <React.Fragment>
+          <ul>
+            <li>
+              <Link to={"/event-create"} component={RouterLink}>
+                Create Event
+              </Link>
+            </li>
+            <li>
+              <Link to={"/reservations"} component={RouterLink}>
+                View Reservations
+              </Link>
+            </li>
+            <li>
+              <div onClick={this.onSignOutClick}>
+                <Link to={"#"} component={RouterLink}>
+                  Sign Out
+                </Link>
+              </div>
+            </li>
+          </ul>
+        </React.Fragment>
       );
     } else {
       return (
@@ -78,7 +94,7 @@ class GoogleAuth extends React.Component {
 const mapStateToProps = (state) => {
   return {
     isSignedIn: state.auth.isSignedIn,
-    isAdmin: state.auth.userId.adminOf.length > 0,
+    // isAdmin: state.auth.userId.adminOf.length > 0,
   };
 };
 

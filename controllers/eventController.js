@@ -15,7 +15,7 @@ module.exports = {
   },
   get: async (req, res) => {
     try {
-      const dbEvent = await db.Event.find({}, 'eventName date openSpots');
+      const dbEvent = await db.Event.find({}, "eventName date openSpots");
       res.json(dbEvent);
     } catch (error) {
       alert(error);
@@ -24,7 +24,9 @@ module.exports = {
   getById: async (req, res) => {
     try {
       // console.log(req.params)
-      const dbEvent = await db.Event.findById(req.params.id).select('eventName date openSpots');
+      const dbEvent = await db.Event.findById(req.params.id).select(
+        "eventName date openSpots"
+      );
       res.json(dbEvent);
     } catch (error) {
       console.log(error);
@@ -32,10 +34,20 @@ module.exports = {
   },
   getAdminById: async (req, res) => {
     try {
-      const dbEvent = await db.Event.find({ _id: req.params.id }).populate("groups");
+      const dbEvent = await db.Event.find({ _id: req.params.id }).populate(
+        "groups"
+      );
       res.json(dbEvent);
     } catch (error) {
       console.log(error);
     }
-  }
+  },
+  deleteById: async (req, res) => {
+    try {
+      const dbEvent = await db.Event.remove({ _id: req.params.id });
+      res.json(dbEvent);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

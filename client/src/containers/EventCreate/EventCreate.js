@@ -23,7 +23,6 @@ const EventCreate = (props) => {
       <br />
       <br />
       <br />
-      <Link to="/reservations">View Reservations</Link>
     </React.Fragment>
   );
 };

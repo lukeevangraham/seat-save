@@ -8,9 +8,12 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import EditIcon from "@material-ui/icons/Edit"
+import DeleteIcon from "@material-ui/icons/Delete"
 
 const eventTable = (props) => (
   <TableContainer component={Paper}>
+    {console.log("PROPS: ", props)}
     <Table aria-label="event table">
       <TableHead>
         <TableRow>
@@ -19,11 +22,12 @@ const eventTable = (props) => (
           <TableCell align="right">Date</TableCell>
           <TableCell align="right">Time</TableCell>
           <TableCell align="right">Open Spots</TableCell>
+          {props.isAuth ? <TableCell align="right">Admin</TableCell> : null }
         </TableRow>
       </TableHead>
       <TableBody>
         {props.events.map((event) => (
-          <TableRow key={event.eventName}>
+          <TableRow key={event._id}>
             <TableCell component="th" scope="row">
               <Link
                 component={RouterLink}
@@ -50,6 +54,7 @@ const eventTable = (props) => (
               })}
             </TableCell>
             <TableCell align="right">{event.openSpots}</TableCell>
+            {props.isAuth ? <TableCell align="right"> <EditIcon fontSize="small" /> <DeleteIcon onClick={() => props.delete(event._id)} fontSize="small" /> </TableCell> : null }
           </TableRow>
         ))}
       </TableBody>
