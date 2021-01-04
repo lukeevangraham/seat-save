@@ -37,6 +37,7 @@ const renderDateAndTimeField = ({
 );
 
 const EventForm = (props) => {
+  console.log("FORM PROPS: ", props)
   const { handleSubmit, pristine, reset, submitting, classes } = props;
   return (
     <form onSubmit={handleSubmit}>

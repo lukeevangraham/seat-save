@@ -84,8 +84,6 @@ class GoogleAuth extends React.Component {
       <div>
         {this.adminRedirect}
         {this.renderAuthButton()}
-
-        {console.log("PROPS: ", this.props)}
       </div>
     );
   }

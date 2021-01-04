@@ -35,6 +35,12 @@ export const deleteEvent = (id) => async (dispatch) => {
   dispatch({ type: actionTypes.DELETE_EVENT, payload: id });
 };
 
+export const editEvent = (id, formValues) => async (dispatch) => {
+  const response = await seats.put(`event/${id}`, formValues)
+
+  dispatch({ type: actionTypes.EDIT_EVENT, payload: response.data })
+}
+
 export const createGroup = (id, formValues) => async (dispatch) => {
   const response = await seats.post(`/group/${id}`, formValues);
 

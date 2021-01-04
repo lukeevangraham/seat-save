@@ -44,9 +44,9 @@ const eventTable = (props) => {
   );
 
   const deleteAndCloseModal = (id) => {
-    props.delete(id)
+    props.delete(id);
     handleClose();
-  }
+  };
 
   const handleOpen = (action, id, name) => {
     if (action === "del") {
@@ -56,10 +56,17 @@ const eventTable = (props) => {
       );
       setModalActions(
         <div>
-          <Button variant="contained" color="secondary" onClick={() => deleteAndCloseModal(id)}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => deleteAndCloseModal(id)}
+          >
             Delete
-          </Button>{"  "}
-          <Button variant="contained" onClick={handleClose}>Cancel</Button>
+          </Button>
+          {"  "}
+          <Button variant="contained" onClick={handleClose}>
+            Cancel
+          </Button>
         </div>
       );
     }
@@ -124,14 +131,16 @@ const eventTable = (props) => {
               {props.isAuth ? (
                 <TableCell align="right">
                   {" "}
-                  <EditIcon fontSize="small" />{" "}
-                  <Link component={RouterLink} to="#" color="TextPrimary">
-                  <DeleteIcon
-                    fontSize="small"
-                    onClick={() =>
-                      handleOpen("del", event._id, event.eventName)
-                    }
-                  />
+                  <Link component={RouterLink} to={`/events/edit/${event._id}`} color="textPrimary">
+                    <EditIcon fontSize="small" />{" "}
+                  </Link>
+                  <Link component={RouterLink} to="#" color="textPrimary">
+                    <DeleteIcon
+                      fontSize="small"
+                      onClick={() =>
+                        handleOpen("del", event._id, event.eventName)
+                      }
+                    />
                   </Link>
                 </TableCell>
               ) : null}
