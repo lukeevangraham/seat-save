@@ -5,28 +5,35 @@ import { fetchEvent, editEvent } from "../../store/actions/index";
 import EventForm from "../EventCreate/EventForm/EventForm";
 
 const EventEdit = (props) => {
-useEffect(() => {
+  useEffect(() => {
     props.fetchEvent(props.match.params.id);
-}, [])
+  }, [props.fetchEvent]);
 
-const onSubmit = formValues => {
-    props.editEvent(props.match.params.id, formValues)
-}
+  const onSubmit = (formValues) => {
+    props.editEvent(props.match.params.id, formValues);
+  };
+
+  let form = <p>Hello</p>;
+
+  if ((props.event.length = 1)) {
+    form = <EventForm initialValues={props.event[0]} onSubmit={onSubmit} />;
+  }
 
   return (
     <div>
-        {console.log("EVENT: ", _.pick(props.event, 'date', 'eventName', 'openSpots'))}
       <h2>Event Edit</h2>
       <p>This is where events can be edited</p>
-      <EventForm initialValues={_.pick(props.event, 'date', 'eventName', 'openSpots')} onSubmit={onSubmit} />
+      {form}
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        event:  state.event.events
-    }
-}
+const mapStateToProps = (state, ownProps) => {
+  return {
+    event: [state.event.events].filter(
+      (event) => event._id === ownProps.match.params.id
+    ),
+  };
+};
 
 export default connect(mapStateToProps, { fetchEvent, editEvent })(EventEdit);
