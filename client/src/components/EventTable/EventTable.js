@@ -1,5 +1,6 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
+import SimpleModal from "../UI/Modal/Modal"
 import Link from "@material-ui/core/Link";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -54,7 +55,8 @@ const eventTable = (props) => (
               })}
             </TableCell>
             <TableCell align="right">{event.openSpots}</TableCell>
-            {props.isAuth ? <TableCell align="right"> <EditIcon fontSize="small" /> <DeleteIcon onClick={() => props.delete(event._id)} fontSize="small" /> </TableCell> : null }
+            {/* {props.isAuth ? <TableCell align="right"> <EditIcon fontSize="small" /> <DeleteIcon onClick={() => props.delete(event._id)} fontSize="small" /> </TableCell> : null } */}
+            {props.isAuth ? <TableCell align="right"> <EditIcon fontSize="small" /> <Link component={RouterLink} to={`/events/delete/${event._id}`}><DeleteIcon fontSize="small" /></Link> </TableCell> : null }
           </TableRow>
         ))}
       </TableBody>

@@ -8,6 +8,7 @@ import Layout from "./hoc/Layout/Layout";
 import EventList from "./containers/EventList/EventList";
 import EventCreate from "./containers/EventCreate/EventCreate";
 import EventReserve from "./containers/EventReserve/EventReserve";
+import EventDelete from "./containers/EventDelete/EventDelete";
 import ReservationList from "./containers/Reservations/ReservationList";
 import Reservations from "./containers/Reservations/Reservations";
 
@@ -24,6 +25,7 @@ const App = (props) => {
       <Switch>
         <Route path="/" exact render={(props) => <EventList isAuth={true} />} />
         <Route path="/event-create" component={EventCreate} />
+        <Route path="/events/delete/:id" component={EventDelete} />
         <Route path="/reservations" exact component={ReservationList} />
         <Route path="/reservations/:id" exact component={Reservations} />
         <Route path="/reserve/:id" exact component={EventReserve} />
