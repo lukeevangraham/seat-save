@@ -67,7 +67,7 @@ const EventForm = (props) => {
       </div>
       <br />
       <br />
-      <Button type="submit" variant="contained" color="secondary">
+      <Button type="submit" variant="contained" color="primary">
         Submit
       </Button>
     </form>

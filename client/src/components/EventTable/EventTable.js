@@ -131,11 +131,16 @@ const eventTable = (props) => {
               {props.isAuth ? (
                 <TableCell align="right">
                   {" "}
-                  <Link component={RouterLink} to={`/events/edit/${event._id}`} color="textPrimary">
-                    <EditIcon fontSize="small" />{" "}
+                  <Link
+                    component={RouterLink}
+                    to={`/events/edit/${event._id}`}
+                    color="textPrimary"
+                  >
+                    <EditIcon fontSize="small" />
                   </Link>
                   <Link component={RouterLink} to="#" color="textPrimary">
                     <DeleteIcon
+                      style={{ marginLeft: 5 }}
                       fontSize="small"
                       onClick={() =>
                         handleOpen("del", event._id, event.eventName)

@@ -20,23 +20,23 @@ const EventReserve = (props) => {
 
   let renderForm = <div>Loading ...</div>;
 
-  if (props.event)
+  if (props.event.length > 0)
     renderForm = (
       <div>
         <h2>Make Reservation</h2>
         <h4>
-          {props.event.eventName} -{" "}
-          {new Date(props.event.date).toLocaleDateString("us-en", {
+          {props.event[0].eventName} -{" "}
+          {new Date(props.event[0].date).toLocaleDateString("us-en", {
             weekday: "short",
           })}
           {", "}
-          {new Date(props.event.date).toLocaleString("en-us", {
+          {new Date(props.event[0].date).toLocaleString("en-us", {
             dateStyle: "short",
             timeStyle: "short",
           })}
         </h4>
 
-        <ReserveForm onSubmit={onSubmit} event={props.event} />
+        <ReserveForm onSubmit={onSubmit} event={props.event[0]} />
       </div>
     );
 
@@ -48,9 +48,10 @@ const EventReserve = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    event: state.event.events,
+    event: state.event.events.filter(
+      (event) => event._id === ownProps.match.params.id),
     created: state.group.created,
     group: state.group.group
   };

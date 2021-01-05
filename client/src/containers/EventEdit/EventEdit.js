@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React, { useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchEvent, editEvent } from "../../store/actions/index";
 import EventForm from "../EventCreate/EventForm/EventForm";
@@ -13,6 +14,8 @@ const EventEdit = (props) => {
     props.editEvent(props.match.params.id, formValues);
   };
 
+  const createdRedirect = props.created ? <Redirect to="/" /> : null;
+
   let form = <p>Hello</p>;
 
   if ((props.event.length = 1)) {
@@ -24,8 +27,8 @@ const EventEdit = (props) => {
 
   return (
     <div>
+      {createdRedirect}
       <h2>Event Edit</h2>
-      <p>This is where events can be edited</p>
       {form}
     </div>
   );
@@ -36,6 +39,7 @@ const mapStateToProps = (state, ownProps) => {
     event: state.event.events.filter(
       (event) => event._id === ownProps.match.params.id
     ),
+    created: state.event.created,
   };
 };
 
