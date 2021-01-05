@@ -48,10 +48,18 @@ let ReserveForm = (props) => {
           style={{ width: "300px" }}
         />
       </div>
+      {props.auth ? (
+        <div>
+          <Field name="note" component={renderTextField} label="Note" />
+        </div>
+      ) : null }
       <br />
       <Button type="submit" variant="contained" color="primary">
         Submit
       </Button>
+      {/* <Button style={{ marginLeft: "1rem" }} variant="contained" color="default">
+        Cancel
+      </Button> */}
     </form>
   );
 };

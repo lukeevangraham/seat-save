@@ -46,4 +46,20 @@ module.exports = {
       alert(error);
     }
   },
+  update: async (req, res) => {
+    const dbGroup = await db.Group.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: req.body },
+      { new: true }
+    );
+    console.log("Q: ", req.body.eventId);
+    const dbEvent = await db.Event.findOneAndUpdate(
+      { _id: req.body.eventId },
+      { $inc: { openSpots: req.body.sizeDifference } },
+      { new: true }
+    );
+    res.json({ dbGroup, dbEvent })
+    // console.log("DbGroup: ", dbGroup);
+    // console.log("DbEvent: ", dbEvent);
+  },
 };

@@ -12,6 +12,7 @@ import EventDelete from "./containers/EventDelete/EventDelete";
 import EventEdit from "./containers/EventEdit/EventEdit";
 import ReservationList from "./containers/Reservations/ReservationList";
 import Reservations from "./containers/Reservations/Reservations";
+import ReservationEdit from "./containers/Reservations/ReservationEdit";
 
 const App = (props) => {
   let routes = (
@@ -30,6 +31,7 @@ const App = (props) => {
         <Route path="/events/delete/:id" component={EventDelete} />
         <Route path="/reservations" exact component={ReservationList} />
         <Route path="/reservations/:id" exact component={Reservations} />
+        <Route path="/reservations/edit/:id" exact component={ReservationEdit} />
         <Route path="/reserve/:id" exact component={EventReserve} />
       </Switch>
     );

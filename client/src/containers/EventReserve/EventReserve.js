@@ -36,7 +36,7 @@ const EventReserve = (props) => {
           })}
         </h4>
 
-        <ReserveForm onSubmit={onSubmit} event={props.event[0]} />
+        <ReserveForm onSubmit={onSubmit} event={props.event[0]} auth={props.isSignedIn} />
       </div>
     );
 
@@ -53,7 +53,8 @@ const mapStateToProps = (state, ownProps) => {
     event: state.event.events.filter(
       (event) => event._id === ownProps.match.params.id),
     created: state.group.created,
-    group: state.group.group
+    group: state.group.group,
+    isSignedIn: state.auth.isSignedIn
   };
 };
 

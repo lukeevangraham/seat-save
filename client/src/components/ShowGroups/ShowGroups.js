@@ -1,10 +1,14 @@
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
+import Link from "@material-ui/core/Link";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 import Paper from "@material-ui/core/Paper";
 
 const ShowGroups = (props) => (
@@ -27,6 +31,23 @@ const ShowGroups = (props) => (
                         <TableCell component="th" scope="row">{group.groupName}</TableCell>
                         <TableCell align="right">{group.groupSize}</TableCell>
                         <TableCell align="right">{group.email}</TableCell>
+                        <TableCell align="right">{group.note}</TableCell>
+                <TableCell align="right">
+                  <Link
+                    component={RouterLink}
+                    to={`/reservations/edit/${group._id}`}
+                    color="textPrimary"
+                  >
+                    <EditIcon fontSize="small" />
+                  </Link>
+                  <Link component={RouterLink} to="#" color="textPrimary">
+                    <DeleteIcon
+                      style={{ marginLeft: 5 }}
+                      fontSize="small"
+                    />
+                  </Link>
+                </TableCell>
+
                     </TableRow>
                 ))}
             </TableBody>

@@ -11,8 +11,6 @@ const Reservations = (props) => {
 
   let renderShowGroups = <div>Loading...</div>;
 
-  console.log("EVENT: ", props.event);
-
   if (props.event[0]) {
     if (props.event[0].groups) {
       renderShowGroups = <ShowGroups event={props.event} />;

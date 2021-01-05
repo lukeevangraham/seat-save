@@ -90,29 +90,26 @@ const eventTable = (props) => {
       <Table aria-label="event table">
         <TableHead>
           <TableRow>
+            <TableCell></TableCell>
             <TableCell>Event</TableCell>
             <TableCell align="right">Day</TableCell>
             <TableCell align="right">Date</TableCell>
             <TableCell align="right">Time</TableCell>
             <TableCell align="right">Open Spots</TableCell>
-            {props.isAuth ? <TableCell align="right">Admin</TableCell> : null}
+            {props.isAuth ? <><TableCell align="right">Admin</TableCell><TableCell align="right">Groups</TableCell></> : null}
           </TableRow>
         </TableHead>
         <TableBody>
           {props.events.map((event) => (
             <TableRow key={event._id}>
               <TableCell component="th" scope="row">
-                <Link
-                  component={RouterLink}
-                  to={
-                    props.admin
-                      ? `/reservations/${event._id}`
-                      : `/reserve/${event._id}`
-                  }
-                >
-                  {event.eventName}
+                <Link component={RouterLink} to={`/reserve/${event._id}`}>
+                  <Button variant="contained" color="primary">
+                    Reserve
+                  </Button>
                 </Link>
               </TableCell>
+              <TableCell>{event.eventName}</TableCell>
               <TableCell align="right">
                 {new Date(event.date).toLocaleDateString("us-en", {
                   weekday: "short",
@@ -129,6 +126,7 @@ const eventTable = (props) => {
               <TableCell align="right">{event.openSpots}</TableCell>
               {/* {props.isAuth ? <TableCell align="right"> <EditIcon fontSize="small" /> <DeleteIcon onClick={() => props.delete(event._id)} fontSize="small" /> </TableCell> : null } */}
               {props.isAuth ? (
+                <>
                 <TableCell align="right">
                   {" "}
                   <Link
@@ -148,6 +146,8 @@ const eventTable = (props) => {
                     />
                   </Link>
                 </TableCell>
+                <TableCell align="right"><Link component={RouterLink} to={`/reservations/${event._id}`}>View</Link></TableCell>
+                </>
               ) : null}
             </TableRow>
           ))}

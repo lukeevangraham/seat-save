@@ -41,6 +41,13 @@ export const editEvent = (id, formValues) => async (dispatch) => {
   dispatch({ type: actionTypes.EDIT_EVENT, payload: response.data })
 }
 
+
+export const startCreateGroup = () => {
+  return {
+    type: actionTypes.CREATE_GROUP_START,
+  };
+};
+
 export const createGroup = (id, formValues) => async (dispatch) => {
   const response = await seats.post(`/group/${id}`, formValues);
 
@@ -50,11 +57,14 @@ export const createGroup = (id, formValues) => async (dispatch) => {
   });
 };
 
-export const startCreateGroup = () => {
-  return {
-    type: actionTypes.CREATE_GROUP_START,
-  };
-};
+export const editGroup = (id, formValues) => async (dispatch) => {
+  const response = await seats.put(`/group/${id}`, formValues)
+
+  dispatch({
+    type: actionTypes.EDIT_GROUP,
+    payload: response.data
+  })
+}
 
 export const signIn = (profile) => async (dispatch) => {
   const response = await seats.post("/user", profile);

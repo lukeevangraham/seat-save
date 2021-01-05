@@ -52,11 +52,6 @@ class GoogleAuth extends React.Component {
               </Link>
             </li>
             <li>
-              <Link to={"/reservations"} component={RouterLink}>
-                View Reservations
-              </Link>
-            </li>
-            <li>
               <div onClick={this.onSignOutClick}>
                 <Link to={"#"} component={RouterLink}>
                   Sign Out
