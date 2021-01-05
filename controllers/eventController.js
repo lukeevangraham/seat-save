@@ -6,9 +6,7 @@ module.exports = {
     try {
       console.log("BODY: ", req.body);
       const dbEvent = await db.Event.create(req.body);
-      res.json({
-        message: `Event added ${dbEvent}`,
-      });
+      res.json(dbEvent);
     } catch (error) {
       alert(error);
     }

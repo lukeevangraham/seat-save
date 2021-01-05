@@ -33,7 +33,7 @@ const EventEdit = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    event: [state.event.events].filter(
+    event: state.event.events.filter(
       (event) => event._id === ownProps.match.params.id
     ),
   };
