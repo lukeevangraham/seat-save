@@ -16,6 +16,9 @@ const EventEdit = (props) => {
   let form = <p>Hello</p>;
 
   if ((props.event.length = 1)) {
+    let eventCopy = props.event[0];
+    eventCopy ? (eventCopy.date = new Date(new Date(eventCopy.date).toString().split('GMT')[0]+' UTC').toISOString().split('.')[0]) : null;
+
     form = <EventForm initialValues={props.event[0]} onSubmit={onSubmit} />;
   }
 

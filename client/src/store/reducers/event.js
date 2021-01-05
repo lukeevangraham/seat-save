@@ -17,10 +17,13 @@ const eventReducer = (state = initialState, action) => {
       return { ...state, events: action.payload };
     case actionTypes.DELETE_EVENT:
       console.log("REDUCER RES: ", action.payload);
-      case actionTypes.EDIT_EVENT:
-        console.log("REDUCER PAYLOAD: ", action.payload)
-        return { ...state }
-      return { ...state, events: state.events.filter(event => event._id !== action.payload ) };
+    case actionTypes.EDIT_EVENT:
+      console.log("REDUCER PAYLOAD: ", action.payload);
+      return { ...state, events: action.payload };
+      return {
+        ...state,
+        events: state.events.filter((event) => event._id !== action.payload),
+      };
     default:
       return state;
   }

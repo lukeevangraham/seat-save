@@ -50,4 +50,12 @@ module.exports = {
       console.log(error);
     }
   },
+  update: async (req, res) => {
+    try {
+      const dbEvent = await db.Event.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true })
+      res.json(dbEvent)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 };
