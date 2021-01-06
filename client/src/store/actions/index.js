@@ -11,6 +11,15 @@ export const fetchMaxGroupSize = () => async (dispatch) => {
   });
 };
 
+export const fetchChurchSettings = () => async (dispatch) => {
+  const response = await seats.get(`church/admin`);
+
+  dispatch({
+    type: actionTypes.FETCH_CHURCH_SETTINGS,
+    payload: response.data[0]
+  })
+};
+
 export const createEvent = (formValues) => async (dispatch) => {
   const response = await seats.post("/event", formValues);
 

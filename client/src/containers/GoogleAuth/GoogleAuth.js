@@ -52,6 +52,13 @@ class GoogleAuth extends React.Component {
               </Link>
             </li>
             <li>
+              <div>
+                <Link to={"/settings"} component={RouterLink}>
+                  Settings
+                </Link>
+              </div>
+            </li>
+            <li>
               <div onClick={this.onSignOutClick}>
                 <Link to={"#"} component={RouterLink}>
                   Sign Out

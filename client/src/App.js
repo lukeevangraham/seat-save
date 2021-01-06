@@ -3,7 +3,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
-import { fetchMaxGroupSize } from "./store/actions/index"
+import { fetchMaxGroupSize } from "./store/actions/index";
 
 import Layout from "./hoc/Layout/Layout";
 import EventList from "./containers/EventList/EventList";
@@ -14,11 +14,12 @@ import EventEdit from "./containers/EventEdit/EventEdit";
 import ReservationList from "./containers/Reservations/ReservationList";
 import Reservations from "./containers/Reservations/Reservations";
 import ReservationEdit from "./containers/Reservations/ReservationEdit";
+import Settings from "./containers/Settings/Settings"
 
 const App = (props) => {
-useEffect(() => {
-  props.fetchMaxGroupSize()
-}, [])
+  useEffect(() => {
+    props.fetchMaxGroupSize();
+  }, []);
 
   let routes = (
     <Switch>
@@ -36,8 +37,13 @@ useEffect(() => {
         <Route path="/events/delete/:id" component={EventDelete} />
         <Route path="/reservations" exact component={ReservationList} />
         <Route path="/reservations/:id" exact component={Reservations} />
-        <Route path="/reservations/edit/:id" exact component={ReservationEdit} />
+        <Route
+          path="/reservations/edit/:id"
+          exact
+          component={ReservationEdit}
+        />
         <Route path="/reserve/:id" exact component={EventReserve} />
+        <Route path="/settings" exact component={Settings} />
       </Switch>
     );
   }
@@ -55,7 +61,7 @@ useEffect(() => {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isSignedIn,
-    maxGroupSize: state.church.maxGroupSize
+    maxGroupSize: state.church.maxGroupSize,
   };
 };
 

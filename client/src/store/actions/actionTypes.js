@@ -14,3 +14,4 @@ export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
 
 export const FETCH_MAX_GROUP_SIZE = "FETCH_MAX_GROUP_SIZE";
+export const FETCH_CHURCH_SETTINGS = "FETCH_CHURCH_SETTINGS";
