@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   adminEmail: [],
   adminFirstName: "",
   adminLastName: "",
+  signupMessage: ""
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -18,6 +19,7 @@ export default (state = INITIAL_STATE, action) => {
         adminFirstName: action.payload.adminFirstName,
         adminLastName: action.payload.adminLastName,
         maxGroupSize: action.payload.maxGroupSize,
+        signupMessage: action.payload.signupMessage
       };
     default:
       return state;

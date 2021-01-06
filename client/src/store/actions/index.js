@@ -20,6 +20,10 @@ export const fetchChurchSettings = () => async (dispatch) => {
   })
 };
 
+export const updateChurchSettings = (formValues) => async (dispatch) => {
+  const response = await seats.put(`church/admin`, formValues);
+}
+
 export const createEvent = (formValues) => async (dispatch) => {
   const response = await seats.post("/event", formValues);
 

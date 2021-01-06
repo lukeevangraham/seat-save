@@ -37,7 +37,7 @@ module.exports = {
       } else {
 
         // Is user approved for church?
-        db.Church.findOne({ adminEmail: dbUser.email }).then((dbChurch) => {
+        db.Church.findOne({ adminEmail: { "adminEmail": dbUser.email} }).then((dbChurch) => {
 
           dbChurch ? res.json(dbUser) : res.json({errorMessage: "You do not have an admin account with SeatSave"})
           

@@ -2,6 +2,15 @@ import React from "react";
 import { Field, FieldArray, reduxForm } from "redux-form";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import EmailIcon from "@material-ui/icons/Email";
+
+const removeArrayItem = (id) => {
+  console.log("ID: ", id);
+};
 
 const renderTextField = ({
   label,
@@ -22,29 +31,35 @@ const renderTextField = ({
 const renderAdminEmails = ({
   fields,
   meta: { touched, error, submitFailed },
-  input
+  input,
 }) => (
-  <ul>
-    <li>
-      <Button variant="contained" onClick={() => fields.push({})}>
-        Add Email
-      </Button>
-      {(touched || submitFailed) && error && <span>{error}</span>}
-    </li>
-    {console.log("FIELDS: ", fields.getAll())}
+  <List style={{ maxWidth: 360, marginTop: "27px", marginBottom: "27px" }}>
     {fields.map((adminEmail, index) => (
-      <li key={index}>
-        {console.log("EMAIL", adminEmail, index)}
+      <li key={index} style={{ display: "flex", alignItems: "flex-end" }}  >
         <Field
+          style={{ width: "80%", marginBottom: ".5rem" }}
           name={`${adminEmail}.adminEmail`}
           type="email"
           component={renderTextField}
           label="Admin Email"
           {...input}
         />
+        <Button
+          style={{ width: "5%", padding: 0, minWidth: 25, marginBottom: ".5rem" }}
+          variant="contained"
+          color="secondary"
+          onClick={() => fields.remove(index)}
+        >
+          X
+        </Button>
       </li>
     ))}
-  </ul>
+
+    <Button variant="contained" onClick={() => fields.push({})}>
+      Add Admin Email
+    </Button>
+    {(touched || submitFailed) && error && <span>{error}</span>}
+  </List>
 );
 
 let SettingsForm = (props) => {
@@ -77,6 +92,8 @@ let SettingsForm = (props) => {
           component={renderTextField}
           label="Signup Message"
           style={{ width: "300px" }}
+          multiline
+          rows={8}
         />
       </div>
       <br />

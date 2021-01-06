@@ -1,18 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
 import SettingsForm from "./SettingsForm/SettingsForm";
-import { fetchChurchSettings } from "../../store/actions/index";
+import { fetchChurchSettings, updateChurchSettings } from "../../store/actions/index";
 
 const Settings = (props) => {
   React.useEffect(() => {
-    props.fetchChurchSettings()
+    props.fetchChurchSettings();
   }, []);
 
-  let form = <div>Loading...</div>
+  const onSubmit = (formValues) => {
+    props.updateChurchSettings(formValues);
+  };
+
+  let form = <div>Loading...</div>;
 
   if (props.church.adminEmail.length > 0) {
-    {console.log("CHURCH: ", props.church)}
-    form = <SettingsForm initialValues={props.church} />
+    form = <SettingsForm initialValues={props.church} onSubmit={onSubmit} />;
   }
 
   return (
@@ -23,10 +26,10 @@ const Settings = (props) => {
   );
 };
 
-const mapStateToProps = state => {
-    return {
-        church: state.church
-    }
-}
+const mapStateToProps = (state) => {
+  return {
+    church: state.church,
+  };
+};
 
-export default connect(mapStateToProps, { fetchChurchSettings })(Settings);
+export default connect(mapStateToProps, { fetchChurchSettings, updateChurchSettings })(Settings);
