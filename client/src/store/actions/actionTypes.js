@@ -12,3 +12,5 @@ export const CREATE_GROUP_START = "CREATE_GROUP_START";
 
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
+
+export const FETCH_MAX_GROUP_SIZE = "FETCH_MAX_GROUP_SIZE";

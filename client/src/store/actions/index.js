@@ -2,6 +2,15 @@ import seats from "../../apis/seats";
 
 import * as actionTypes from "./actionTypes";
 
+export const fetchMaxGroupSize = () => async (dispatch) => {
+  const response = await seats.get(`/church`);
+
+  dispatch({
+    type: actionTypes.FETCH_MAX_GROUP_SIZE,
+    payload: response.data,
+  });
+};
+
 export const createEvent = (formValues) => async (dispatch) => {
   const response = await seats.post("/event", formValues);
 
@@ -70,9 +79,9 @@ export const deleteGroup = (id, groupSize, eventId) => async (dispatch) => {
 
   dispatch({
     type: actionTypes.DELETE_GROUP,
-    payload: response.data
-  })
-}
+    payload: response.data,
+  });
+};
 
 export const signIn = (profile) => async (dispatch) => {
   const response = await seats.post("/user", profile);

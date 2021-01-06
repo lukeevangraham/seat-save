@@ -63,8 +63,7 @@ const ShowGroups = (props) => {
           >
             Delete
           </Button>
-          {"  "}
-          <Button variant="contained" onClick={handleClose}>
+          <Button style={{ marginLeft: "1rem" }} variant="contained" onClick={handleClose}>
             Cancel
           </Button>
         </div>

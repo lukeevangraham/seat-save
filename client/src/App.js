@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
+import { fetchMaxGroupSize } from "./store/actions/index"
 
 import Layout from "./hoc/Layout/Layout";
 import EventList from "./containers/EventList/EventList";
@@ -15,6 +16,10 @@ import Reservations from "./containers/Reservations/Reservations";
 import ReservationEdit from "./containers/Reservations/ReservationEdit";
 
 const App = (props) => {
+useEffect(() => {
+  props.fetchMaxGroupSize()
+}, [])
+
   let routes = (
     <Switch>
       <Route path="/" exact component={EventList} />
@@ -50,7 +55,8 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isSignedIn,
+    maxGroupSize: state.church.maxGroupSize
   };
 };
 
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(connect(mapStateToProps, { fetchMaxGroupSize })(App));

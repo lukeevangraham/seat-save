@@ -11,5 +11,13 @@ module.exports = {
         } catch (error) {
             console.log(error);
         }
+    },
+    get: async (req, res) => {
+        try {
+            const dbChurch = await db.Church.find({}, "maxGroupSize")
+            res.json(dbChurch)
+        } catch (error) {
+            console.log(error);
+        }
     }
 }

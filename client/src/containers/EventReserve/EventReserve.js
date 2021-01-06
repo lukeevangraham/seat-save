@@ -9,6 +9,10 @@ import GroupConfirm from "../../components/GroupConfirm/GroupConfirm";
 const EventReserve = (props) => {
   useEffect(() => {
     props.fetchEvent(props.match.params.id);
+    
+    // calculate maxGroupSize accomadating for available spots
+    // console.log( Math.min(props.maxGroupSize, props.event[0].openSpots))
+
     return () => props.startCreateGroup();
   }, [props.fetchEvent]);
 
@@ -36,7 +40,7 @@ const EventReserve = (props) => {
           })}
         </h4>
 
-        <ReserveForm onSubmit={onSubmit} event={props.event[0]} auth={props.isSignedIn} />
+        <ReserveForm onSubmit={onSubmit} event={props.event[0]} auth={props.isSignedIn} maxGroupSize={Math.min(props.maxGroupSize, props.event[0].openSpots)} />
       </div>
     );
 
@@ -54,7 +58,8 @@ const mapStateToProps = (state, ownProps) => {
       (event) => event._id === ownProps.match.params.id),
     created: state.group.created,
     group: state.group.group,
-    isSignedIn: state.auth.isSignedIn
+    isSignedIn: state.auth.isSignedIn,
+    maxGroupSize: state.church.maxGroupSize
   };
 };
 

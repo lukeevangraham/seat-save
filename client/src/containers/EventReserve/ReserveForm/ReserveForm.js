@@ -44,7 +44,7 @@ let ReserveForm = (props) => {
           component={renderTextField}
           type="number"
           label="How Many People in Your Group?"
-          inputProps={{ min: 1 }}
+          inputProps={{ min: 1, max: props.maxGroupSize }}
           style={{ width: "300px" }}
         />
       </div>
