@@ -36,11 +36,10 @@ export const deleteEvent = (id) => async (dispatch) => {
 };
 
 export const editEvent = (id, formValues) => async (dispatch) => {
-  const response = await seats.put(`event/${id}`, formValues)
+  const response = await seats.put(`event/${id}`, formValues);
 
-  dispatch({ type: actionTypes.EDIT_EVENT, payload: response.data })
-}
-
+  dispatch({ type: actionTypes.EDIT_EVENT, payload: response.data });
+};
 
 export const startCreateGroup = () => {
   return {
@@ -58,10 +57,19 @@ export const createGroup = (id, formValues) => async (dispatch) => {
 };
 
 export const editGroup = (id, formValues) => async (dispatch) => {
-  const response = await seats.put(`/group/${id}`, formValues)
+  const response = await seats.put(`/group/${id}`, formValues);
 
   dispatch({
     type: actionTypes.EDIT_GROUP,
+    payload: response.data,
+  });
+};
+
+export const deleteGroup = (id, groupSize, eventId) => async (dispatch) => {
+  const response = await seats.delete(`/group/${id}/${groupSize}/${eventId}`);
+
+  dispatch({
+    type: actionTypes.DELETE_GROUP,
     payload: response.data
   })
 }

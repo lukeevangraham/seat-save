@@ -26,7 +26,6 @@ const ReservationEdit = (props) => {
     <div>
       {createdRedirect}
       <h2>Reservation Edit</h2>
-      <p>Here you can edit a reservation</p>
       <ReserveForm
         initialValues={props.group[0]}
         auth={props.isSignedIn}

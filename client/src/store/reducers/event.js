@@ -40,6 +40,11 @@ const eventReducer = (state = initialState, action) => {
         created: true,
         events: state.events.filter((event) => event._id !== action.payload),
       };
+    case actionTypes.DELETE_GROUP:
+      return {
+        ...state,
+        events: [action.payload.dbEvent]
+      };
     default:
       return state;
   }

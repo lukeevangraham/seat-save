@@ -52,14 +52,23 @@ module.exports = {
       { $set: req.body },
       { new: true }
     );
-    console.log("Q: ", req.body.eventId);
     const dbEvent = await db.Event.findOneAndUpdate(
       { _id: req.body.eventId },
       { $inc: { openSpots: req.body.sizeDifference } },
       { new: true }
     );
-    res.json({ dbGroup, dbEvent })
-    // console.log("DbGroup: ", dbGroup);
-    // console.log("DbEvent: ", dbEvent);
+    res.json({ dbGroup, dbEvent });
+  },
+  delete: async (req, res) => {
+    const dbGroup = await db.Group.remove({ _id: req.params.id });
+    const dbEvent = await db.Event.findOneAndUpdate(
+      { _id: req.params.eventId },
+      {
+        $pull: { groups: req.params.id },
+        $inc: { openSpots: req.params.size },
+      },
+      { new: true }
+    ).populate("groups");
+    res.json({ dbGroup, dbEvent });
   },
 };

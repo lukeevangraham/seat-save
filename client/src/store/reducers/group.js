@@ -13,6 +13,8 @@ const groupReducer = (state = initialState, action) => {
     case actionTypes.EDIT_GROUP:
       // console.log("REDUCER RES: ", action.payload);
       return { ...state, created: true };
+    case actionTypes.DELETE_GROUP:
+      return { ...state }
     default:
       return state;
   }
