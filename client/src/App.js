@@ -43,6 +43,7 @@ const App = (props) => {
           component={ReservationEdit}
         />
         <Route path="/reserve/:id" exact component={EventReserve} />
+        <Route path="/embed/reserve/:id" exact component={EventReserve} />
         <Route path="/settings" exact component={Settings} />
       </Switch>
     );

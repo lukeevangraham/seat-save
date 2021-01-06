@@ -1,5 +1,7 @@
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 import { Field, formValueSelector, reduxForm } from "redux-form";
+import Link from "@material-ui/core/Link";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
@@ -52,11 +54,17 @@ let ReserveForm = (props) => {
         <div>
           <Field name="note" component={renderTextField} label="Note" />
         </div>
-      ) : null }
+      ) : null}
       <br />
+      <p>{props.signupMessage}</p>
       <Button type="submit" variant="contained" color="primary">
         Submit
       </Button>
+      {props.auth && !window.location.pathname.startsWith("/embed") ? (
+        <div style={{ marginTop: "2rem" }}>
+          <Link component={RouterLink} to={`/embed/reserve/${props.event._id}`}>Embeddable form</Link>
+        </div>
+      ) : null}
       {/* <Button style={{ marginLeft: "1rem" }} variant="contained" color="default">
         Cancel
       </Button> */}
@@ -66,18 +74,17 @@ let ReserveForm = (props) => {
 
 const validate = (formValues) => {
   const errors = {};
-  const requiredFields = [
-    'groupName',
-    'email',
-    'groupSize'
-  ]
-  requiredFields.forEach(field => {
+  const requiredFields = ["groupName", "email", "groupSize"];
+  requiredFields.forEach((field) => {
     if (!formValues[field]) {
-      errors[field] = 'Required'
+      errors[field] = "Required";
     }
-  })
-  if (formValues.email &&  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formValues.email)) {
-    errors.email = 'Invalid email address'
+  });
+  if (
+    formValues.email &&
+    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formValues.email)
+  ) {
+    errors.email = "Invalid email address";
   }
   return errors;
 };

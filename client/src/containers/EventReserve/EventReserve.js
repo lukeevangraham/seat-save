@@ -9,7 +9,7 @@ import GroupConfirm from "../../components/GroupConfirm/GroupConfirm";
 const EventReserve = (props) => {
   useEffect(() => {
     props.fetchEvent(props.match.params.id);
-    
+
     // calculate maxGroupSize accomadating for available spots
     // console.log( Math.min(props.maxGroupSize, props.event[0].openSpots))
 
@@ -40,14 +40,24 @@ const EventReserve = (props) => {
           })}
         </h4>
 
-        <ReserveForm onSubmit={onSubmit} event={props.event[0]} auth={props.isSignedIn} maxGroupSize={Math.min(props.maxGroupSize, props.event[0].openSpots)} />
+        <ReserveForm
+          onSubmit={onSubmit}
+          event={props.event[0]}
+          auth={props.isSignedIn}
+          maxGroupSize={Math.min(props.maxGroupSize, props.event[0].openSpots)}
+          signupMessage={props.signupMessage}
+        />
       </div>
     );
 
   return (
     <div>
       {/* {createdRedirect} */}
-      {(!props.created) ? renderForm : <GroupConfirm group={props.group.dbGroup} event={props.event} /> }
+      {!props.created ? (
+        renderForm
+      ) : (
+        <GroupConfirm group={props.group.dbGroup} event={props.event} />
+      )}
     </div>
   );
 };
@@ -55,11 +65,13 @@ const EventReserve = (props) => {
 const mapStateToProps = (state, ownProps) => {
   return {
     event: state.event.events.filter(
-      (event) => event._id === ownProps.match.params.id),
+      (event) => event._id === ownProps.match.params.id
+    ),
     created: state.group.created,
     group: state.group.group,
     isSignedIn: state.auth.isSignedIn,
-    maxGroupSize: state.church.maxGroupSize
+    maxGroupSize: state.church.maxGroupSize,
+    signupMessage: state.church.signupMessage,
   };
 };
 

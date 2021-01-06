@@ -8,6 +8,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import EmailIcon from "@material-ui/icons/Email";
 
+
 const removeArrayItem = (id) => {
   console.log("ID: ", id);
 };
@@ -35,7 +36,7 @@ const renderAdminEmails = ({
 }) => (
   <List style={{ maxWidth: 360, marginTop: "27px", marginBottom: "27px" }}>
     {fields.map((adminEmail, index) => (
-      <li key={index} style={{ display: "flex", alignItems: "flex-end" }}  >
+      <li key={index} style={{ display: "flex", alignItems: "flex-end" }}>
         <Field
           style={{ width: "80%", marginBottom: ".5rem" }}
           name={`${adminEmail}.adminEmail`}
@@ -45,7 +46,12 @@ const renderAdminEmails = ({
           {...input}
         />
         <Button
-          style={{ width: "5%", padding: 0, minWidth: 25, marginBottom: ".5rem" }}
+          style={{
+            width: "5%",
+            padding: 0,
+            minWidth: 25,
+            marginBottom: ".5rem",
+          }}
           variant="contained"
           color="secondary"
           onClick={() => fields.remove(index)}
@@ -91,9 +97,9 @@ let SettingsForm = (props) => {
           name="signupMessage"
           component={renderTextField}
           label="Signup Message"
-          style={{ width: "300px" }}
+          style={{ width: "100%" }}
           multiline
-          rows={8}
+          rows={13}
         />
       </div>
       <br />

@@ -14,7 +14,7 @@ module.exports = {
   },
   get: async (req, res) => {
     try {
-      const dbChurch = await db.Church.find({}, "maxGroupSize", "signupMessage" );
+      const dbChurch = await db.Church.find({}, "maxGroupSize signupMessage" );
       res.json(dbChurch);
     } catch (error) {
       console.log(error);
