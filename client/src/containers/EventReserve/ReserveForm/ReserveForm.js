@@ -38,6 +38,7 @@ let ReserveForm = (props) => {
           component={renderTextField}
           type="email"
           label="Email"
+          style={{ width: "300px" }}
         />
       </div>
       <div>
@@ -61,15 +62,18 @@ let ReserveForm = (props) => {
         Submit
       </Button>
       {props.auth && !window.location.pathname.startsWith("/embed") ? (
-        <div style={{ marginTop: "2rem" }}>
+        <div style={{ marginTop: "2rem", width: "80%", padding: 8 }}>
           {/* <Link component={RouterLink} to={`/embed/reserve/${props.event._id}`}>
             Embeddable form
           </Link> */}
-          <div>Embed Code:</div>
           <div>
+            <strong>Form Embed Code:</strong>
+          </div>
+          <div style={{ backgroundColor: "#eee", padding: 8 }}>
             {/* <pre> */}
-              {console.log(window.location.host)}
-            &lt;iframe src="{window.location.origin}/embed/reserve/{props.event._id}" title="Event Registration Form" width="100%" height="700px" style="padding:30px; border:none;"&gt;&lt;/iframe&gt;
+            &lt;iframe src="{window.location.origin}/embed/reserve/
+            {props.event._id}" title="Event Registration Form" width="100%"
+            height="700px" style="padding:30px; border:none;"&gt;&lt;/iframe&gt;
             {/* </pre> */}
           </div>
         </div>

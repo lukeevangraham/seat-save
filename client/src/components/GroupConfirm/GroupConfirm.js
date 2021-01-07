@@ -7,7 +7,8 @@ import CloseIcon from "@material-ui/icons/Close"
 const GroupConfirm = (props) => (
   <div>
     <h3>Reservation Confirmation</h3>
-    {console.log("GROUP: ", props.group, props.event)}
+    {console.log("GROUP: ", props.group)}
+    {console.log("EVENT: ", props.event[0])}
     <div>
       <strong>Group Name: </strong>
       {props.group.groupName} <br />
@@ -16,11 +17,11 @@ const GroupConfirm = (props) => (
       <strong>Email: </strong>
       {props.group.email} <br />
       <strong>Event Name: </strong>
-      {props.event.eventName} <br />
+      {props.event[0].eventName} <br />
       <strong>Event Date: </strong>
-      {new Date(props.event.date).toLocaleDateString("en-us")} <br />
+      {new Date(props.event[0].date).toLocaleDateString("en-us")} <br />
       <strong>Event Time: </strong>
-      {new Date(props.event.date).toLocaleTimeString("en-us", {
+      {new Date(props.event[0].date).toLocaleTimeString("en-us", {
         timeStyle: "short",
       })}{" "}
       <br />
@@ -39,8 +40,8 @@ const GroupConfirm = (props) => (
       <div>The above details have been sent to you.</div>
       <br />
       <Button variant="contained" color="primary" onClick={() => window.print()}><PrintIcon />Print</Button>
-      {"  "}
-      <Link to="/"><Button variant="contained" color="primary"><CloseIcon />Close</Button></Link>
+      {/* {"  "}
+      <Link to="/"><Button variant="contained" color="primary"><CloseIcon />Close</Button></Link> */}
     </div>
   </div>
 );
