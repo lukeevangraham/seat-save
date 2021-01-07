@@ -9,6 +9,7 @@ import GroupConfirm from "../../components/GroupConfirm/GroupConfirm";
 const EventReserve = (props) => {
   useEffect(() => {
     props.fetchEvent(props.match.params.id);
+    console.log("FETCHING EVENT")
 
     // calculate maxGroupSize accomadating for available spots
     // console.log( Math.min(props.maxGroupSize, props.event[0].openSpots))
@@ -24,7 +25,7 @@ const EventReserve = (props) => {
 
   let renderForm = <div>Loading ...</div>;
 
-  if (props.event.length > 0)
+  if (props.event.length > 0) {
     renderForm = (
       <div>
         <h2>Make Reservation</h2>
@@ -49,9 +50,12 @@ const EventReserve = (props) => {
         />
       </div>
     );
+  }
 
   return (
     <div>
+      {console.log("PROPS: ", props.event)}
+      {console.log("CREATED: ", props.created)}
       {/* {createdRedirect} */}
       {!props.created ? (
         renderForm

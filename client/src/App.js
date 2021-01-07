@@ -25,6 +25,7 @@ const App = (props) => {
     <Switch>
       <Route path="/" exact component={EventList} />
       <Route path="/reserve/:id" exact component={EventReserve} />
+      <Route path="/embed/reserve/:id" exact component={EventReserve} />
     </Switch>
   );
 
@@ -43,7 +44,7 @@ const App = (props) => {
           component={ReservationEdit}
         />
         <Route path="/reserve/:id" exact component={EventReserve} />
-        <Route path="/embed/reserve/:id" exact component={EventReserve} />
+        
         <Route path="/settings" exact component={Settings} />
       </Switch>
     );
