@@ -62,9 +62,16 @@ let ReserveForm = (props) => {
       </Button>
       {props.auth && !window.location.pathname.startsWith("/embed") ? (
         <div style={{ marginTop: "2rem" }}>
-          <Link component={RouterLink} to={`/embed/reserve/${props.event._id}`}>
+          {/* <Link component={RouterLink} to={`/embed/reserve/${props.event._id}`}>
             Embeddable form
-          </Link>
+          </Link> */}
+          <div>Embed Code:</div>
+          <div>
+            {/* <pre> */}
+              {console.log(window.location.host)}
+            &lt;iframe src="{window.location.origin}/embed/reserve/{props.event._id}" title="Event Registration Form" width="100%" height="700px" style="padding:30px; border:none;"&gt;&lt;/iframe&gt;
+            {/* </pre> */}
+          </div>
         </div>
       ) : null}
       {/* <Button style={{ marginLeft: "1rem" }} variant="contained" color="default">

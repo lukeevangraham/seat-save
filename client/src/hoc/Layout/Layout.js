@@ -18,8 +18,6 @@ const Layout = (props) => {
     );
 
     if (window.location.pathname.startsWith("/embed")) {
-      console.log("TRUE")
-      console.log("PROPS: ", props.children)
       view = (<div></div>)
     }
 
