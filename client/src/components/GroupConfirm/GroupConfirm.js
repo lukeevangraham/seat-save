@@ -40,8 +40,8 @@ const GroupConfirm = (props) => (
       <div>The above details have been sent to you.</div>
       <br />
       <Button variant="contained" color="primary" onClick={() => window.print()}><PrintIcon />Print</Button>
-      {"  "}
-      <Link to="/"><Button variant="contained" color="primary"><CloseIcon />Close</Button></Link>
+      {/* {"  "}
+      <Link to="/"><Button variant="contained" color="primary"><CloseIcon />Close</Button></Link> */}
     </div>
   </div>
 );

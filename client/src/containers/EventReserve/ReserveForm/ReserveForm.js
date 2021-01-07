@@ -38,6 +38,7 @@ let ReserveForm = (props) => {
           component={renderTextField}
           type="email"
           label="Email"
+          style={{ width: "300px" }}
         />
       </div>
       <div>
