@@ -15,9 +15,9 @@ const Reservations = (props) => {
   if (props.event[0]) {
     if (props.event[0].groups) {
       const stripped = props.event[0].groups.map((group) =>
-        (({ email, groupName, groupSize }) => ({
-          email,
+        (({ groupName, email, groupSize }) => ({
           groupName,
+          email,
           groupSize,
         }))(group)
       );
