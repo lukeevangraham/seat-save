@@ -17,6 +17,8 @@ module.exports = {
     // DOES USER EXIST IN DB?
     db.User.findOne({ email: req.body.cu }).then((dbUser) => {
 
+      // console.log("BODY: ", req.body)
+
       // CREATE USER IF NOT LOCATED
       if (!dbUser) {
         const { BT, Ad, fV, iT, SJ, cu } = req.body;
