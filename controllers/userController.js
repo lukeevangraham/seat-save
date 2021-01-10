@@ -20,6 +20,8 @@ module.exports = {
       console.log("BODY: ", req.body)
       console.log("DbUser: ", dbUser)
 
+      // console.log("BODY: ", req.body)
+
       // CREATE USER IF NOT LOCATED
       if (!dbUser) {
         const { OU, Ed, qW, vU, PK, tu } = req.body;

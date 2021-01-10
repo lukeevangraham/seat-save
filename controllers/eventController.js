@@ -13,7 +13,7 @@ module.exports = {
   },
   get: async (req, res) => {
     try {
-      const dbEvent = await db.Event.find({}, "eventName date openSpots");
+      const dbEvent = await db.Event.find({}, "eventName date openSpots").sort({ date:-1 });
       res.json(dbEvent);
     } catch (error) {
       alert(error);
