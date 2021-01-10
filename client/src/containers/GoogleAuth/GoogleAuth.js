@@ -3,6 +3,8 @@ import { Redirect, Link as RouterLink } from "react-router-dom";
 import { connect } from "react-redux";
 import Link from "@material-ui/core/Link";
 import { signIn, signOut } from "../../store/actions";
+import Button from "@material-ui/core/Button";
+import SettingsIcon from "@material-ui/icons/Settings";
 
 class GoogleAuth extends React.Component {
   componentDidMount() {
@@ -44,36 +46,27 @@ class GoogleAuth extends React.Component {
       return null;
     } else if (this.props.isSignedIn) {
       return (
-        <React.Fragment>
-          <ul>
-            <li>
-              <Link to={"/event-create"} component={RouterLink}>
-                Create Event
-              </Link>
-            </li>
-            <li>
-              <div>
-                <Link to={"/settings"} component={RouterLink}>
-                  Settings
-                </Link>
-              </div>
-            </li>
-            <li>
-              <div onClick={this.onSignOutClick}>
-                <Link to={"#"} component={RouterLink}>
-                  Sign Out
-                </Link>
-              </div>
-            </li>
-          </ul>
-        </React.Fragment>
+        <div style={{ display: "flex" }}>
+          {/* <Link color="default" variant="inherit" to={"/event-create"} component={RouterLink}> */}
+            <Button component={RouterLink} to="/event-create" color="inherit">Create Event</Button>
+          {/* </Link> */}
+
+          {/* <Link to={"/settings"} component={RouterLink}> */}
+          <Button color="inherit" component={RouterLink} to="/settings">
+            <SettingsIcon />
+
+          </Button>
+          {/* </Link> */}
+
+          <div onClick={this.onSignOutClick}>
+            <Button color="inherit">Sign Out</Button>
+          </div>
+        </div>
       );
     } else {
       return (
         <div onClick={this.onSignInClick}>
-          <Link to={"#"} component={RouterLink}>
-            Admin
-          </Link>
+          <Button color="inherit">Admin</Button>
         </div>
       );
     }

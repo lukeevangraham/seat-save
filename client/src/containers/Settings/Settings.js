@@ -20,7 +20,7 @@ const Settings = (props) => {
 
   return (
     <div>
-      <h2>Settings</h2>
+      <h2>Church Settings</h2>
       {form}
     </div>
   );

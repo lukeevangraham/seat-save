@@ -25,7 +25,12 @@ const Reservations = (props) => {
         <>
           <ShowGroups event={props.event} delete={props.deleteGroup} />
           <br />
-          <CSVLink style={{ marginTop: "1rem" }} data={stripped}>Export As CSV</CSVLink>
+          <CSVLink
+            style={{ marginTop: "1rem", marginBottom: "1rem" }}
+            data={stripped}
+          >
+            Export As CSV
+          </CSVLink>
         </>
       );
     }
