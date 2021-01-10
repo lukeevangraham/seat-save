@@ -40,7 +40,7 @@ const Layout = (props) => {
             <MenuIcon />
           </IconButton> */}
           <Typography variant="h6" className={classes.title}>
-            <Link component={RouterLink} style={{ color: "#fff" }} to="/">
+            <Link component={RouterLink} style={{ color: "#fff", textDecoration: "none" }} to="/">
               <strong>SeatSave</strong> | RB Community Church
             </Link>
           </Typography>
