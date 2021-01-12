@@ -27,7 +27,7 @@ const EventReserve = (props) => {
   if (props.event.length > 0) {
     renderForm = (
       <div style={{ paddingBottom: "1rem" }}>
-        <h2>Make Reservation</h2>
+        <h2>RSVP</h2>
         <h4>
           {props.event[0].eventName} -{" "}
           {new Date(props.event[0].date).toLocaleDateString("us-en", {

@@ -7,13 +7,14 @@ import Typography from "@material-ui/core/Typography";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import Container from "@material-ui/core/Container";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    marginBottom: "2rem"
+    marginBottom: "2rem",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -29,7 +30,7 @@ const Layout = (props) => {
   let view = (
     // <>
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar style={{ margin: 0 }} position="static">
         <Toolbar>
           {/* <IconButton
             edge="start"
@@ -40,7 +41,11 @@ const Layout = (props) => {
             <MenuIcon />
           </IconButton> */}
           <Typography variant="h6" className={classes.title}>
-            <Link component={RouterLink} style={{ color: "#fff", textDecoration: "none" }} to="/">
+            <Link
+              component={RouterLink}
+              style={{ color: "#fff", textDecoration: "none" }}
+              to="/"
+            >
               <strong>SeatSave</strong> | RB Community Church
             </Link>
           </Typography>
@@ -66,7 +71,9 @@ const Layout = (props) => {
   return (
     <>
       {view}
-      <main>{props.children}</main>
+      <Container maxWidth="md">
+        <main>{props.children}</main>
+      </Container>
     </>
   );
 };

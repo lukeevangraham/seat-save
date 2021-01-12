@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Container from "@material-ui/core/Container";
 import { fetchMaxGroupSize } from "./store/actions/index";
 
 import Layout from "./hoc/Layout/Layout";
@@ -53,9 +52,7 @@ const App = (props) => {
   return (
     <div>
       <CssBaseline />
-      <Container maxWidth="md">
         <Layout>{routes}</Layout>
-      </Container>
     </div>
   );
 };
