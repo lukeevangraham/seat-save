@@ -40,6 +40,8 @@ const EventReserve = (props) => {
           })}
         </h4>
 
+        {console.log("EventReserve PROPS: ", props.event[0])}
+
         <ReserveForm
           onSubmit={onSubmit}
           event={props.event[0]}

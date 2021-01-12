@@ -30,6 +30,7 @@ const ReservationEdit = (props) => {
         initialValues={props.group[0]}
         auth={props.isSignedIn}
         onSubmit={onSubmit}
+        event={props.event}
       />
     </div>
   );
@@ -43,6 +44,7 @@ const mapStateToProps = (state, ownProps) => {
     isSignedIn: state.auth.isSignedIn,
     eventId: state.event.events[0]._id,
     created: state.group.created,
+    event: state.event.events[0]
   };
 };
 
