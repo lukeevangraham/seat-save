@@ -23,6 +23,7 @@ The Event List doubles as the app home screen.  All events are visible.  Adminis
 
 ### Event Create
 Administrators can create events via the following form.
+
 ![eventCreate](./readmeImages/eventCreate.png)
 
 ### View Groups List
