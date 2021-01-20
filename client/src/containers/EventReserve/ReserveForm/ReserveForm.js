@@ -2,6 +2,12 @@ import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Field, formValueSelector, reduxForm } from "redux-form";
 import Link from "@material-ui/core/Link";
+import FormLabel from "@material-ui/core/FormLabel"
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
@@ -19,6 +25,31 @@ const renderTextField = ({
     {...input}
     {...custom}
   />
+);
+
+const renderCheckboxField = ({
+  label,
+  input,
+  meta: { touched, invalid, error },
+  ...custom
+}) => (
+  <FormControl error={touched && invalid} component="fieldset">
+    {console.log("ERR: ", error)}
+    <FormGroup>
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={input.value ? true : false}
+            onChange={input.onChange}
+            {...custom}
+            {...input}
+          />
+        }
+        label={label}
+      />
+    </FormGroup>
+    <FormHelperText>{touched && error}</FormHelperText>
+  </FormControl>
 );
 
 let ReserveForm = (props) => {
@@ -57,6 +88,40 @@ let ReserveForm = (props) => {
         </div>
       ) : null}
       <br />
+      <div style={{ marginTop: "1rem" }}>
+        <FormLabel>Please read and check all that apply</FormLabel>
+        <br />
+        <Field
+          name="noSymptoms"
+          component={renderCheckboxField}
+          label="I do not have any COVID-19 symptoms"
+        />
+        <Field
+          name="noContact"
+          component={renderCheckboxField}
+          label="I have not been in contact with anyone who has recently contracted the coronavirus"
+        />
+        <Field
+          name="willDistance"
+          component={renderCheckboxField}
+          label="I will always maintain a minimum 6-feet distance from anyone that I do not live with"
+        />
+        <Field
+          name="willMask"
+          component={renderCheckboxField}
+          label="I will wear a properly fitting mask over my nose and mouth at all times"
+        />
+        <Field
+          name="noSocial"
+          component={renderCheckboxField}
+          label="I understand this is a worship opportunity, not a social event, and when ended, I will proceed to my car while wearing my mask"
+        />
+        <Field
+          name="partyResponsible"
+          component={renderCheckboxField}
+          label="I accept responsibility that all people in my party will follow these guidelines"
+        />
+      </div>
       <p>{props.signupMessage}</p>
       <Button type="submit" variant="contained" color="primary">
         Submit
@@ -86,8 +151,19 @@ let ReserveForm = (props) => {
 };
 
 const validate = (formValues) => {
+  console.log("VALUES ", formValues);
   const errors = {};
-  const requiredFields = ["groupName", "email", "groupSize"];
+  const requiredFields = [
+    "groupName",
+    "email",
+    "groupSize",
+    "noSymptoms",
+    "noContact",
+    "willDistance",
+    "willMask",
+    "noSocial",
+    "partyResponsible",
+  ];
   requiredFields.forEach((field) => {
     if (!formValues[field]) {
       errors[field] = "Required";
