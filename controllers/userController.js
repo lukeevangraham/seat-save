@@ -15,7 +15,7 @@ module.exports = {
 
 
     // DOES USER EXIST IN DB?
-    db.User.findOne({ email: req.body.jt }).then((dbUser) => {
+    db.User.findOne({ email: req.body.tu }).then((dbUser) => {
 
       console.log("BODY: ", req.body)
       console.log("DbUser: ", dbUser)
@@ -24,14 +24,14 @@ module.exports = {
 
       // CREATE USER IF NOT LOCATED
       if (!dbUser) {
-        const { wR, sd, bT, dR, fI, jt } = req.body;
+        const { OU, Ed, qW, vU, PK, tu } = req.body;
         const renamedBody = {
-          iD: wR,
-          fullName: sd,
-          givenName: bT,
-          familyName: dR,
-          imageURL: fI,
-          email: jt,
+          iD: OU,
+          fullName: Ed,
+          givenName: qW,
+          familyName: vU,
+          imageURL: PK,
+          email: tu,
         };
 
         db.User.create(renamedBody).then((createdDbUser) => {
