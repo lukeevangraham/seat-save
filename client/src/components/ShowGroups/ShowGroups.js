@@ -63,7 +63,11 @@ const ShowGroups = (props) => {
           >
             Delete
           </Button>
-          <Button style={{ marginLeft: "1rem" }} variant="contained" onClick={handleClose}>
+          <Button
+            style={{ marginLeft: "1rem" }}
+            variant="contained"
+            onClick={handleClose}
+          >
             Cancel
           </Button>
         </div>
@@ -78,7 +82,7 @@ const ShowGroups = (props) => {
 
   return (
     <div>
-    <Modal
+      <Modal
         open={modalOpen}
         onClose={handleClose}
         aria-labelledby="delete-group-confirmation"
@@ -90,6 +94,12 @@ const ShowGroups = (props) => {
         Groups for: {props.event[0].eventName} -{" "}
         {new Date(props.event[0].date).toLocaleString()}
       </h3>
+      <h4>
+        {props.event[0].groups
+          .map((group) => group.groupSize)
+          .reduce((prev, next) => prev + next)}{" "}
+        Reservations
+      </h4>
       <TableContainer component={Paper}>
         <Table aria-label="group table">
           <TableHead>
@@ -123,7 +133,12 @@ const ShowGroups = (props) => {
                       style={{ marginLeft: 5 }}
                       fontSize="small"
                       onClick={() =>
-                        handleOpen("del", group._id, group.groupName, group.groupSize)
+                        handleOpen(
+                          "del",
+                          group._id,
+                          group.groupName,
+                          group.groupSize
+                        )
                       }
                     />
                   </Link>
