@@ -95,10 +95,11 @@ const ShowGroups = (props) => {
         {new Date(props.event[0].date).toLocaleString()}
       </h3>
       <h4>
-        {props.event[0].groups
-          .map((group) => group.groupSize)
-          .reduce((prev, next) => prev + next)}{" "}
-        Reservations
+        {props.event[0].groups.length > 0
+          ? props.event[0].groups
+              .map((group) => group.groupSize)
+              .reduce((prev, next) => prev + next) + " Reservations"
+          : null}{" "}
       </h4>
       <TableContainer component={Paper}>
         <Table aria-label="group table">
