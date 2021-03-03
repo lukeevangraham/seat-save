@@ -37,6 +37,7 @@ const EventReserve = (props) => {
           {new Date(props.event[0].date).toLocaleString("en-us", {
             dateStyle: "short",
             timeStyle: "short",
+	timeZone: "GMT"
           })}
         </h4>
 

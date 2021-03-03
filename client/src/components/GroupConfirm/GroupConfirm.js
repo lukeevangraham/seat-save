@@ -23,6 +23,7 @@ const GroupConfirm = (props) => (
       <strong>Event Time: </strong>
       {new Date(props.event[0].date).toLocaleTimeString("en-us", {
         timeStyle: "short",
+	timeZone: "GMT"
       })}{" "}
       <br />
       <br />
@@ -30,7 +31,7 @@ const GroupConfirm = (props) => (
         Time Reservation Made:{" "}
         {new Date().toLocaleString("en-us", {
           dateStyle: "short",
-          timeStyle: "short",
+          timeStyle: "short"
         })}
       </strong>
       <br />

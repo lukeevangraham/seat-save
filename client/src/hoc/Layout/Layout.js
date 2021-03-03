@@ -46,7 +46,7 @@ const Layout = (props) => {
               style={{ color: "#fff", textDecoration: "none" }}
               to="/"
             >
-              <strong>SeatSave</strong> | RB Community Church
+              <strong>SeatSave</strong> | San Pedro Presbyterian Church
             </Link>
           </Typography>
           {/* <Button color="inherit">Login</Button> */}

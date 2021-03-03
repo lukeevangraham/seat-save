@@ -92,7 +92,7 @@ const ShowGroups = (props) => {
       </Modal>
       <h3>
         Groups for: {props.event[0].eventName} -{" "}
-        {new Date(props.event[0].date).toLocaleString()}
+        {new Date(props.event[0].date).toLocaleString('en-US', {timeZone: "GMT"})}
       </h3>
       <h4>
         {props.event[0].groups.length > 0

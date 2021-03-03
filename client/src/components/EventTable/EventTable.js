@@ -120,6 +120,7 @@ const eventTable = (props) => {
               <TableCell align="right">
                 {new Date(event.date).toLocaleTimeString([], {
                   timeStyle: "short",
+		timeZone: "UTC"
                 })}
               </TableCell>
               <TableCell align="right">{event.openSpots}</TableCell>
