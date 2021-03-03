@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const INITIAL_STATE = {
-  isSignedIn: null,
+  isSignedIn: true,
   userId: {
     adminOf: []
   },

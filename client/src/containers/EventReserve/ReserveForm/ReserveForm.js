@@ -89,37 +89,12 @@ let ReserveForm = (props) => {
       ) : null}
       <br />
       <div style={{ marginTop: "1rem" }}>
-        <FormLabel>Please read and check all that apply</FormLabel>
+        <FormLabel>Please read and check the following</FormLabel>
         <br />
         <Field
-          name="noSymptoms"
+          name="willAbide"
           component={renderCheckboxField}
-          label="I do not have any COVID-19 symptoms"
-        />
-        <Field
-          name="noContact"
-          component={renderCheckboxField}
-          label="I have not been in contact with anyone who has recently contracted the coronavirus"
-        />
-        <Field
-          name="willDistance"
-          component={renderCheckboxField}
-          label="I will always maintain a minimum 6-feet distance from anyone that I do not live with"
-        />
-        <Field
-          name="willMask"
-          component={renderCheckboxField}
-          label="I will wear a properly fitting mask over my nose and mouth at all times"
-        />
-        <Field
-          name="noSocial"
-          component={renderCheckboxField}
-          label="I understand this is a worship opportunity, not a social event, and when ended, I will proceed to my car while wearing my mask"
-        />
-        <Field
-          name="partyResponsible"
-          component={renderCheckboxField}
-          label="I accept responsibility that all people in my party will follow these guidelines"
+          label="I will abide by San Pedro best safety practices"
         />
       </div>
       <p>{props.signupMessage}</p>
@@ -157,12 +132,7 @@ const validate = (formValues) => {
     "groupName",
     "email",
     "groupSize",
-    "noSymptoms",
-    "noContact",
-    "willDistance",
-    "willMask",
-    "noSocial",
-    "partyResponsible",
+    "willAbide",
   ];
   requiredFields.forEach((field) => {
     if (!formValues[field]) {
