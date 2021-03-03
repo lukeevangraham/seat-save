@@ -63,7 +63,11 @@ const eventTable = (props) => {
           >
             Delete
           </Button>
-          <Button style={{ marginLeft: "1rem" }} variant="contained" onClick={handleClose}>
+          <Button
+            style={{ marginLeft: "1rem" }}
+            variant="contained"
+            onClick={handleClose}
+          >
             Cancel
           </Button>
         </div>
@@ -95,7 +99,12 @@ const eventTable = (props) => {
             <TableCell align="right">Date</TableCell>
             <TableCell align="right">Time</TableCell>
             <TableCell align="right">Open Spots</TableCell>
-            {props.isAuth ? <><TableCell align="right">Admin</TableCell><TableCell align="right">Groups</TableCell></> : null}
+            {props.isAuth ? (
+              <>
+                <TableCell align="right">Admin</TableCell>
+                <TableCell align="right">Groups</TableCell>
+              </>
+            ) : null}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -120,33 +129,40 @@ const eventTable = (props) => {
               <TableCell align="right">
                 {new Date(event.date).toLocaleTimeString([], {
                   timeStyle: "short",
-		timeZone: "UTC"
+                  timeZone: "UTC",
                 })}
               </TableCell>
               <TableCell align="right">{event.openSpots}</TableCell>
               {/* {props.isAuth ? <TableCell align="right"> <EditIcon fontSize="small" /> <DeleteIcon onClick={() => props.delete(event._id)} fontSize="small" /> </TableCell> : null } */}
               {props.isAuth ? (
                 <>
-                <TableCell align="right">
-                  {" "}
-                  <Link
-                    component={RouterLink}
-                    to={`/events/edit/${event._id}`}
-                    color="textPrimary"
-                  >
-                    <EditIcon fontSize="small" />
-                  </Link>
-                  <Link component={RouterLink} to="#" color="textPrimary">
-                    <DeleteIcon
-                      style={{ marginLeft: 5 }}
-                      fontSize="small"
-                      onClick={() =>
-                        handleOpen("del", event._id, event.eventName)
-                      }
-                    />
-                  </Link>
-                </TableCell>
-                <TableCell align="right"><Link component={RouterLink} to={`/reservations/${event._id}`}>View</Link></TableCell>
+                  <TableCell align="right">
+                    {" "}
+                    <Link
+                      component={RouterLink}
+                      to={`/events/edit/${event._id}`}
+                      color="textPrimary"
+                    >
+                      <EditIcon fontSize="small" />
+                    </Link>
+                    <Link component={RouterLink} to="#" color="textPrimary">
+                      <DeleteIcon
+                        style={{ marginLeft: 5 }}
+                        fontSize="small"
+                        onClick={() =>
+                          handleOpen("del", event._id, event.eventName)
+                        }
+                      />
+                    </Link>
+                  </TableCell>
+                  <TableCell align="right">
+                    <Link
+                      component={RouterLink}
+                      to={`/reservations/${event._id}`}
+                    >
+                      View
+                    </Link>
+                  </TableCell>
                 </>
               ) : null}
             </TableRow>

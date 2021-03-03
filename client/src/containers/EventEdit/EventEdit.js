@@ -20,8 +20,16 @@ const EventEdit = (props) => {
 
   if ((props.event.length = 1)) {
     let eventCopy = props.event[0];
-     eventCopy ? (eventCopy.date = new Date(new Date(eventCopy.date).toString().split('GMT')[0]+' UTC').toISOString().split('.')[0]) : null;
+    eventCopy ? console.log("eventCopy: ", new Date(new Date(eventCopy.date).toString()).toISOString()) : null
 
+    const localOffset = new Date().getTimezoneOffset()
+    const localOffsetMillis = 60 * 1000 * localOffset;
+
+    // console.log("Offset: ", new Date().getTimezoneOffset())
+
+    // eventCopy ? (eventCopy.date = new Date(new Date(eventCopy.date).toString()).toISOString().split('.')[0]) : null;
+    eventCopy ? (eventCopy.date = new Date(new Date(new Date(eventCopy.date).getTime() + localOffsetMillis).toString()).toISOString().split('.')[0]) : null;
+    
     form = <EventForm initialValues={props.event[0]} onSubmit={onSubmit} />;
   }
 

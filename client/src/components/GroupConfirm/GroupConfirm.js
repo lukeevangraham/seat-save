@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import PrintIcon from "@material-ui/icons/Print"
-import CloseIcon from "@material-ui/icons/Close"
+import PrintIcon from "@material-ui/icons/Print";
+import CloseIcon from "@material-ui/icons/Close";
 
 const GroupConfirm = (props) => (
   <div>
@@ -23,7 +23,7 @@ const GroupConfirm = (props) => (
       <strong>Event Time: </strong>
       {new Date(props.event[0].date).toLocaleTimeString("en-us", {
         timeStyle: "short",
-	timeZone: "GMT"
+        timeZone: "GMT",
       })}{" "}
       <br />
       <br />
@@ -31,7 +31,7 @@ const GroupConfirm = (props) => (
         Time Reservation Made:{" "}
         {new Date().toLocaleString("en-us", {
           dateStyle: "short",
-          timeStyle: "short"
+          timeStyle: "short",
         })}
       </strong>
       <br />
@@ -40,7 +40,14 @@ const GroupConfirm = (props) => (
       <br />
       <div>The above details have been sent to you.</div>
       <br />
-      <Button variant="contained" color="primary" onClick={() => window.print()}><PrintIcon />Print</Button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => window.print()}
+      >
+        <PrintIcon />
+        Print
+      </Button>
       {/* {"  "}
       <Link to="/"><Button variant="contained" color="primary"><CloseIcon />Close</Button></Link> */}
     </div>
