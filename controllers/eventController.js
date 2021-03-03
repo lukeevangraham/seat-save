@@ -5,6 +5,17 @@ module.exports = {
   post: async (req, res) => {
     try {
       console.log("BODY: ", req.body);
+      // console.log("LOOK HERE:", new Date(req.body.date).toISOString())
+      // const convertedDate = new Date(req.body.date).toISOString()
+
+      // const newBody = {
+      //   eventName: req.body.eventName,
+      //   date: convertedDate,
+      //   openSpots: req.body.openSpots
+      // }
+
+
+
       const dbEvent = await db.Event.create(req.body);
       res.json(dbEvent);
     } catch (error) {
