@@ -26,8 +26,22 @@ class GoogleAuth extends React.Component {
 
   onAuthChange = (isSignedIn) => {
     if (isSignedIn) {
-      const profile = this.auth.currentUser.get().getBasicProfile();
-      this.props.signIn(profile);
+      // console.log("HERE: ", this.auth.currentUser.get().getBasicProfile().getName())
+      // const profile = this.auth.currentUser.get().getBasicProfile();
+      const id = this.auth.currentUser.get().getId();
+      const fullName = this.auth.currentUser.get().getBasicProfile().getName();
+      const givenName = this.auth.currentUser.get().getBasicProfile().getGivenName();
+      const familyName = this.auth.currentUser.get().getBasicProfile().getFamilyName();
+      const imageUrl = this.auth.currentUser.get().getBasicProfile().getImageUrl();
+      const email = this.auth.currentUser.get().getBasicProfile().getEmail();
+      this.props.signIn({
+        id,
+        fullName,
+        givenName,
+        familyName,
+        imageUrl,
+        email,
+      });
     } else {
       this.props.signOut();
     }
@@ -48,13 +62,14 @@ class GoogleAuth extends React.Component {
       return (
         <div style={{ display: "flex" }}>
           {/* <Link color="default" variant="inherit" to={"/event-create"} component={RouterLink}> */}
-            <Button component={RouterLink} to="/event-create" color="inherit">Create Event</Button>
+          <Button component={RouterLink} to="/event-create" color="inherit">
+            Create Event
+          </Button>
           {/* </Link> */}
 
           {/* <Link to={"/settings"} component={RouterLink}> */}
           <Button color="inherit" component={RouterLink} to="/settings">
             <SettingsIcon />
-
           </Button>
           {/* </Link> */}
 

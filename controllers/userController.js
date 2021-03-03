@@ -2,7 +2,6 @@ const db = require("../models");
 
 module.exports = {
   validate: (req, res) => {
-
     // db.Church.find({}).then(dbChurch => {
     //   console.log("CHURCH: ", dbChurch[0]._id)
     //   db.User.findOneAndUpdate(
@@ -13,43 +12,32 @@ module.exports = {
     //   ).then((res) => {console.log(res)})
     // })
 
-
     // DOES USER EXIST IN DB?
-    db.User.findOne({ email: req.body.kt }).then((dbUser) => {
-
-      console.log("BODY: ", req.body)
-      console.log("DbUser: ", dbUser)
+    db.User.findOne({ email: req.body.email }).then((dbUser) => {
+      console.log("BODY: ", req.body);
+      console.log("DbUser: ", dbUser);
 
       // console.log("BODY: ", req.body)
 
       // CREATE USER IF NOT LOCATED
       if (!dbUser) {
-        const { wR, sd, bT, dR, fI, kt } = req.body;
-        const renamedBody = {
-          iD: wR,
-          fullName: sd,
-          givenName: bT,
-          familyName: dR,
-          imageURL: fI,
-          email: kt,
-        };
-
-        db.User.create(renamedBody).then((createdDbUser) => {
+        db.User.create(req.body).then((createdDbUser) => {
           res.json({
-            errorMessage: "You do not have an admin account with SeatSave"
+            errorMessage: "You do not have an admin account with SeatSave",
           });
         });
       } else {
-
         // Is user approved for church?
-        db.Church.findOne({ adminEmail: { "adminEmail": dbUser.email} }).then((dbChurch) => {
-
-          dbChurch ? res.json(dbUser) : res.json({errorMessage: "You do not have an admin account with SeatSave"})
-          
-        })
-        
-        
-
+        db.Church.findOne({ adminEmail: { adminEmail: dbUser.email } }).then(
+          (dbChurch) => {
+            dbChurch
+              ? res.json(dbUser)
+              : res.json({
+                  errorMessage:
+                    "You do not have an admin account with SeatSave",
+                });
+          }
+        );
       }
     });
   },
