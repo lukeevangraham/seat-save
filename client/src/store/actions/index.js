@@ -2,6 +2,15 @@ import seats from "../../apis/seats";
 
 import * as actionTypes from "./actionTypes";
 
+export const createChurch = (formValues) => async (dispatch) => {
+  const response = await seats.post(`/church`, formValues);
+
+  dispatch({
+    type: actionTypes.CREATE_CHURCH,
+    payload: response.data,
+  });
+};
+
 export const fetchMaxGroupSize = () => async (dispatch) => {
   const response = await seats.get(`/church`);
 
@@ -16,13 +25,13 @@ export const fetchChurchSettings = () => async (dispatch) => {
 
   dispatch({
     type: actionTypes.FETCH_CHURCH_SETTINGS,
-    payload: response.data[0]
-  })
+    payload: response.data[0],
+  });
 };
 
 export const updateChurchSettings = (formValues) => async (dispatch) => {
   const response = await seats.put(`church/admin`, formValues);
-}
+};
 
 export const createEvent = (formValues) => async (dispatch) => {
   const response = await seats.post("/event", formValues);

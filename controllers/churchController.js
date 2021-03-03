@@ -3,8 +3,15 @@ const db = require("../models");
 module.exports = {
   // create a church account
   post: async (req, res) => {
+    console.log("req body", req.body);
+    const newBody = {
+      churchName: req.body.churchName,
+      adminEmail: { adminEmail: req.body.adminEmail },
+    };
     try {
-      const dbChurch = await db.Church.create(req.body);
+      console.log("trying to post church!");
+      const dbChurch = await db.Church.create(newBody);
+      console.log("dbChurch: ", dbChurch);
       res.json({
         message: `Church added ${dbChurch}`,
       });
@@ -14,13 +21,14 @@ module.exports = {
   },
   get: async (req, res) => {
     try {
-      const dbChurch = await db.Church.find({}, "maxGroupSize signupMessage" );
+      const dbChurch = await db.Church.find({}, "maxGroupSize signupMessage churchName");
       res.json(dbChurch);
     } catch (error) {
       console.log(error);
     }
   },
   adminGet: async (req, res) => {
+    console.log("getting an admin: ");
     try {
       const dbChurch = await db.Church.find({});
       res.json(dbChurch);
@@ -30,10 +38,14 @@ module.exports = {
   },
   adminUpdate: async (req, res) => {
     try {
-      const dbChurch = await db.Church.findOneAndUpdate({}, { $set: req.body }, { new: true } )
-      res.json(dbChurch)
+      const dbChurch = await db.Church.findOneAndUpdate(
+        {},
+        { $set: req.body },
+        { new: true }
+      );
+      res.json(dbChurch);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  },
 };

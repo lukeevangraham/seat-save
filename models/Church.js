@@ -5,28 +5,32 @@ const Schema = mongoose.Schema;
 const churchSchema = new Schema({
   adminFirstName: {
     type: String,
-    required: true,
+    // required: true,
   },
   adminLastName: {
-      type: String,
-      required: true
+    type: String,
+    //   required: true
   },
   adminEmail: {
-      type: Array,
-      required: true
+    type: Array,
+    required: true,
   },
   adminPhone: {
-      type: Number
+    type: Number,
   },
   maxGroupSize: {
-      type: Number,
-      required: true,
+    type: Number,
+    //   required: true,
+    default: 10,
   },
   signupMessage: {
-      type: String
-  }
+    type: String,
+  },
+  churchName: {
+    type: String,
+  },
 });
 
-const Church = mongoose.model("Church", churchSchema)
+const Church = mongoose.model("Church", churchSchema);
 
 module.exports = Church;

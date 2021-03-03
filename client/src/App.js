@@ -14,6 +14,7 @@ import ReservationList from "./containers/Reservations/ReservationList";
 import Reservations from "./containers/Reservations/Reservations";
 import ReservationEdit from "./containers/Reservations/ReservationEdit";
 import Settings from "./containers/Settings/Settings"
+import Intro from "./components/Intro/Intro"
 
 const App = (props) => {
   useEffect(() => {
@@ -22,7 +23,7 @@ const App = (props) => {
 
   let routes = (
     <Switch>
-      <Route path="/" exact component={EventList} />
+      <Route path="/" exact component={Intro} />
       <Route path="/reserve/:id" exact component={EventReserve} />
       <Route path="/embed/reserve/:id" exact component={EventReserve} />
     </Switch>

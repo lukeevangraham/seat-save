@@ -27,9 +27,11 @@ module.exports = {
           });
         });
       } else {
+        console.log("we have a user", dbUser.email);
         // Is user approved for church?
         db.Church.findOne({ adminEmail: { adminEmail: dbUser.email } }).then(
           (dbChurch) => {
+            console.log("dbChurch: ", dbChurch);
             dbChurch
               ? res.json(dbUser)
               : res.json({
