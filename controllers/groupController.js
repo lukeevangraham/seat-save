@@ -15,7 +15,7 @@ module.exports = {
       );
 
       let mailOptions = {
-        from: "donotreply@rbcpc.org",
+        from: "sppchurch@sppcsa.com",
         to: dbGroup.email,
         subject: `Reservation for ${dbEvent.eventName}`,
         text: `This confirms you have a group reservation for:
