@@ -14,8 +14,6 @@ module.exports = {
 
     // DOES USER EXIST IN DB?
     db.User.findOne({ email: req.body.email }).then((dbUser) => {
-      console.log("BODY: ", req.body);
-      console.log("DbUser: ", dbUser);
 
       // console.log("BODY: ", req.body)
 

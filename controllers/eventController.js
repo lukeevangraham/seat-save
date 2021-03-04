@@ -4,7 +4,6 @@ module.exports = {
   // post an event
   post: async (req, res) => {
     try {
-      console.log("BODY: ", req.body);
       // console.log("LOOK HERE:", new Date(req.body.date).toISOString())
       // const convertedDate = new Date(req.body.date).toISOString()
 
