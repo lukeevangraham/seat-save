@@ -1,10 +1,4 @@
 /*
-    object-assign
-    (c) Sindre Sorhus
-    @license MIT
-    */
-
-/*
 object-assign
 (c) Sindre Sorhus
 @license MIT
@@ -36,7 +30,20 @@ object-assign
        */
 
 /*!
+                 * ignore
+                 */
+
+/*!
+               * Ensure `name` and `message` show up in toJSON output re: gh-9296
+               */
+
+/*!
                * Handle async validators
+               */
+
+/*!
+               * ignore
+               * @param {Readonly<CastError>} other
                */
 
 /*!
@@ -44,25 +51,12 @@ object-assign
                */
 
 /*!
-             * Ensure `name` and `message` show up in toJSON output re: gh-9296
-             */
+               * inspect helper
+               */
 
 /*!
-             * ignore
-             * @param {Readonly<CastError>} other
-             */
-
-/*!
-             * ignore
-             */
-
-/*!
-             * inspect helper
-             */
-
-/*!
-            * add message
-            */
+              * add message
+              */
 
 /*!
            * Checks for indexes added to subdocs using Schema.index().
@@ -72,11 +66,20 @@ object-assign
            */
 
 /*!
+           * OverwriteModel Error constructor.
+           */
+
+/*!
            * Recursively set nested arrays
            */
 
 /*!
            * ignore
+           */
+
+/*!
+           * toString helper
+           * TODO remove? This defaults to `${this.name}: ${this.message}`
            */
 
 /*!
@@ -128,10 +131,6 @@ object-assign
          */
 
 /*!
-         * OverwriteModel Error constructor.
-         */
-
-/*!
          * Registers remove event listeners for triggering
          * on subdocuments.
          *
@@ -141,11 +140,6 @@ object-assign
 
 /*!
          * ignore
-         */
-
-/*!
-         * toString helper
-         * TODO remove? This defaults to `${this.name}: ${this.message}`
          */
 
 /*!
@@ -435,6 +429,10 @@ object-assign
        */
 
 /*!
+       * The class that Mongoose uses internally to instantiate this SchemaType's `options` property.
+       */
+
+/*!
        * Use native promises by default
        */
 
@@ -589,6 +587,11 @@ object-assign
 
 /*!
      * Helper for JSON.stringify
+     * Ensure `name` and `message` show up in toJSON output re: gh-9847
+     */
+
+/*!
+     * If `val` is an object, returns constructor name, if possible. Otherwise returns undefined.
      */
 
 /*!
@@ -893,7 +896,7 @@ object-assign
  * @license MIT
  */
 
-/** @license React v0.20.1
+/** @license React v0.20.2
  * scheduler.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -911,7 +914,7 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
-/** @license React v17.0.1
+/** @license React v17.0.2
  * react-dom.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -920,7 +923,7 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
-/** @license React v17.0.1
+/** @license React v17.0.2
  * react-is.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -929,7 +932,7 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
-/** @license React v17.0.1
+/** @license React v17.0.2
  * react-jsx-runtime.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -938,7 +941,7 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
-/** @license React v17.0.1
+/** @license React v17.0.2
  * react.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
