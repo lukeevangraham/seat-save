@@ -56,8 +56,12 @@ module.exports = {
       axios
         .request(config)
         .then((response) => {
-          console.log(JSON.stringify(response.data));
-          res.status(200).json({ status: 200 });
+          console.log("HERE: ", JSON.stringify(response.data));
+          res.status(200).json({
+            status: 200,
+            message: `Group reservation added!`,
+            dbGroup,
+          });
         })
         .catch((error) => {
           console.log(error);
@@ -79,20 +83,20 @@ module.exports = {
       //   Event Time: ${new Date(dbEvent.date).toLocaleTimeString()}`,
       // };
 
-      transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Email sent " + info.response);
-        }
-      });
+      // transporter.sendMail(mailOptions, function (error, info) {
+      //   if (error) {
+      //     console.log(error);
+      //   } else {
+      //     console.log("Email sent " + info.response);
+      //   }
+      // });
 
-      res.json({
-        message: `Group reservation added!`,
-        dbGroup,
-      });
+      // res.json({
+      //   message: `Group reservation added!`,
+      //   dbGroup,
+      // });
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   },
   update: async (req, res) => {
