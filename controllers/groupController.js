@@ -56,7 +56,6 @@ module.exports = {
       axios
         .request(config)
         .then((response) => {
-          console.log("HERE: ", JSON.stringify(response.data));
           res.status(200).json({
             status: 200,
             message: `Group reservation added!`,

@@ -7,8 +7,6 @@ import CloseIcon from "@material-ui/icons/Close"
 const GroupConfirm = (props) => (
   <div>
     <h3>Reservation Confirmation</h3>
-    {console.log("GROUP: ", props.group)}
-    {console.log("EVENT: ", props.event[0])}
     <div>
       <strong>Group Name: </strong>
       {props.group.groupName} <br />

@@ -34,7 +34,6 @@ const renderCheckboxField = ({
   ...custom
 }) => (
   <FormControl error={touched && invalid} component="fieldset">
-    {console.log("ERR: ", error)}
     <FormGroup>
       <FormControlLabel
         control={
