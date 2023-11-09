@@ -1,5 +1,6 @@
 const db = require("../models");
-import axios from "axios";
+const axios = require("axios");
+
 // const transporter = require("../nodemailer/");
 
 module.exports = {
