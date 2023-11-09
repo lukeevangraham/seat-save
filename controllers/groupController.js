@@ -1,5 +1,6 @@
 const db = require("../models");
-const transporter = require("../nodemailer/");
+import axios from "axios";
+// const transporter = require("../nodemailer/");
 
 module.exports = {
   // make a group reservation
@@ -14,11 +15,20 @@ module.exports = {
         }
       );
 
-      let mailOptions = {
-        from: "sppchurch@sppcsa.com",
-        to: dbGroup.email,
-        subject: `Reservation for ${dbEvent.eventName}`,
-        text: `This confirms you have a group reservation for:
+      let data = JSON.stringify({
+        recipients: [
+          {
+            address: dbGroup.email,
+          },
+          { address: "luke@grahamwebworks.com" },
+        ],
+        content: {
+          from: {
+            email: "luke@mail.grahamwebworks.com",
+            name: "sppchurch",
+          },
+          subject: `Reservation for ${dbEvent.eventName}`,
+          text: `This confirms you have a group reservation for:
         
         ${dbEvent.eventName}
         
@@ -28,7 +38,45 @@ module.exports = {
         Event Name: ${dbEvent.eventName}
         Event Date: ${new Date(dbEvent.date).toLocaleDateString()}
         Event Time: ${new Date(dbEvent.date).toLocaleTimeString()}`,
+        },
+      });
+
+      let config = {
+        method: "post",
+        maxBodyLength: Infinity,
+        url: "https://api.sparkpost.com/api/v1/transmissions",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: process.env.SPARKPOST_API_KEY,
+        },
+        data: data,
       };
+
+      axios
+        .request(config)
+        .then((response) => {
+          console.log(JSON.stringify(response.data));
+          res.status(200).json({ status: 200 });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      // let mailOptions = {
+      //   from: "sppchurch@sppcsa.com",
+      //   to: dbGroup.email,
+      //   subject: `Reservation for ${dbEvent.eventName}`,
+      //   text: `This confirms you have a group reservation for:
+
+      //   ${dbEvent.eventName}
+
+      //   Group Name: ${dbGroup.groupName}
+      //   Group Size: ${dbGroup.groupSize}
+      //   Email: ${dbGroup.email}
+      //   Event Name: ${dbEvent.eventName}
+      //   Event Date: ${new Date(dbEvent.date).toLocaleDateString()}
+      //   Event Time: ${new Date(dbEvent.date).toLocaleTimeString()}`,
+      // };
 
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
